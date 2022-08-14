@@ -16,6 +16,9 @@
     <properties>
         <java.version>17</java.version>
         <jooq.version>3.17.2</jooq.version>
+        <testcontainers.version>1.17.3</testcontainers.version>
+        <db.username>postgres</db.username>
+        <db.password>postgres</db.password>
     </properties>
     <dependencies>
         <dependency>
@@ -91,6 +94,81 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <execution>
+                        <id>testcontainer-start</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                db = new org.testcontainers.containers.PostgreSQLContainer("postgres:14-alpine")
+                                        .withUsername("${db.username}")
+                                        .withDatabaseName("postgres")
+                                        .withPassword("${db.password}");
+
+                                db.start();
+                                project.properties.setProperty('db.url', db.getJdbcUrl());
+                                project.properties.setProperty('testcontainer.containerid', db.getContainerId());
+                                project.properties.setProperty('testcontainer.imageName', db.getDockerImageName());
+                            </source>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>testcontainer-stop</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                containerId = "${testcontainer.containerid}"
+                                imageName = "${testcontainer.imageName}"
+                                println("Stopping testcontainer $containerId - $imageName")
+                                org.testcontainers.utility.ResourceReaper
+                                        .instance()
+                                        .stopAndRemoveContainer(containerId, imageName);
+                            </source>
+                        </configuration>
+                    </execution>
+
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.testcontainers</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${testcontainers.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>7.14.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>migrate</goal>
+                        </goals>
+                        <configuration>
+                            <url>${db.url}</url>
+                            <user>${db.username}</user>
+                            <password>${db.password}</password>
+                            <locations>
+                                <location>filesystem:src/main/resources/db/migration</location>
+                            </locations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <version>${jooq.version}</version>
@@ -103,9 +181,9 @@
                         </goals>
                         <configuration>
                             <jdbc>
-                                <url>jdbc:postgresql://localhost:5432/postgres</url>
-                                <user>postgres</user>
-                                <password>postgres</password>
+                                <url>${db.url}</url>
+                                <user>${db.username}</user>
+                                <password>${db.password}</password>
                             </jdbc>
                             <generator>
                                 <generate>
@@ -116,16 +194,6 @@
                                 </generate>
                                 <database>
                                     <inputSchema>public</inputSchema>
-                                    <properties>
-                                        <property>
-                                            <key>sort</key>
-                                            <value>semantic</value>
-                                        </property>
-                                        <property>
-                                            <key>scripts</key>
-                                            <value>src/main/resources/db/migration/*</value>
-                                        </property>
-                                    </properties>
                                 </database>
                                 <!-- Rename the generated POJOs and DAOs classes -->
                                 <strategy>
@@ -153,13 +221,17 @@
                         </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jooq</groupId>
-                        <artifactId>jooq-meta-extensions</artifactId>
-                        <version>${jooq.version}</version>
-                    </dependency>
-                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <db.url>${db.url}</db.url>
+                        <db.username>${db.username}</db.username>
+                        <db.password>${db.password}</db.password>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
