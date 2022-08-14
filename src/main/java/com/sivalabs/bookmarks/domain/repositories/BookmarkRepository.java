@@ -3,8 +3,10 @@ package com.sivalabs.bookmarks.domain.repositories;
 import com.sivalabs.bookmarks.domain.models.Bookmark;
 import com.sivalabs.bookmarks.domain.models.Tag;
 import com.sivalabs.bookmarks.domain.models.User;
+import com.sivalabs.bookmarks.jooq.tables.records.BookmarksRecord;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
+import org.jooq.Result;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,15 +42,21 @@ public class BookmarkRepository {
                 .fetch(mapping(Bookmark::new));
     }
 
+    public Optional<Bookmark> findById(Long id) {
+        BookmarksRecord bookmarksRecord = dsl.selectFrom(BOOKMARKS).where(BOOKMARKS.ID.eq(id)).fetchSingle();
+        Bookmark bookmark = new Bookmark(bookmarksRecord.getId(),
+                bookmarksRecord.getTitle(),
+                bookmarksRecord.getUrl(),
+                null,
+                null);
+        return Optional.of(bookmark);
+    }
+
     public List<Bookmark> searchBookmarksByTitle(String query) {
         return null;
     }
 
     public List<Bookmark> fetchBookmarksByCategory(String categoryName) {
-        return null;
-    }
-
-    public Optional<Bookmark> findById(Long id) {
         return null;
     }
 

@@ -7,5 +7,6 @@ public record Bookmark (
     String title,
     String url,
     User createdBy,
-    List<Tag> tags){
+    List<Tag> tags
+){
 }

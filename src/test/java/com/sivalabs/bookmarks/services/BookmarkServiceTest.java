@@ -19,6 +19,14 @@ class BookmarkServiceTest {
     @Test
     void shouldGetAllBookmarks() {
         List<Bookmark> allBookmarks = bookmarkService.getAllBookmarks();
+        System.out.println(allBookmarks);
         assertThat(allBookmarks).isNotEmpty();
+    }
+
+    @Test
+    void shouldGetBookmarkById() {
+        Bookmark bookmark = bookmarkService.getBookmarkById(1L).orElse(null);
+        System.out.println(bookmark);
+        assertThat(bookmark).isNotNull();
     }
 }

@@ -74,11 +74,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-meta-extensions</artifactId>
-            <version>${jooq.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -107,17 +102,18 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <!--<jdbc>
-                                <url>jdbc:postgresql://localhost:5432/postgres</url>
-                                <user>postgres</user>
-                                <password>postgres</password>
-                            </jdbc>-->
                             <jdbc>
                                 <url>jdbc:h2:mem:app</url>
                                 <user>sa</user>
                                 <password></password>
                             </jdbc>
                             <generator>
+                                <generate>
+                                    <pojos>true</pojos>
+                                    <daos>true</daos>
+                                    <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
+                                    <javaTimeTypes>true</javaTimeTypes>
+                                </generate>
                                 <database>
                                     <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
                                     <inputSchema>PUBLIC</inputSchema>
@@ -128,11 +124,29 @@
                                         </property>
                                         <property>
                                             <key>scripts</key>
-                                            <value>${basedir}/src/main/resources/db/migration/*</value>
+                                            <value>src/main/resources/db/migration/*</value>
                                         </property>
                                     </properties>
                                 </database>
+                                <!-- Rename the generated POJOs and DAOs classes -->
+                                <strategy>
+                                    <matchers>
+                                        <tables>
+                                            <table>
+                                                <pojoClass>
+                                                    <expression>JOOQ_$0</expression>
+                                                    <transform>PASCAL</transform>
+                                                </pojoClass>
+                                                <daoClass>
+                                                    <expression>$0_Repository</expression>
+                                                    <transform>PASCAL</transform>
+                                                </daoClass>
+                                            </table>
+                                        </tables>
+                                    </matchers>
+                                </strategy>
                                 <target>
+                                    <clean>true</clean>
                                     <packageName>com.sivalabs.bookmarks.jooq</packageName>
                                     <directory>src/main/jooq</directory>
                                 </target>
@@ -140,6 +154,13 @@
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-meta-extensions</artifactId>
+                        <version>${jooq.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

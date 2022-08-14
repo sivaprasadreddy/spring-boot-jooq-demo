@@ -5,6 +5,7 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Addresses;
+import com.sivalabs.bookmarks.jooq.tables.pojos.JooqAddresses;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -288,5 +289,21 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
         setState(state);
         setZip(zip);
         setCountry(country);
+    }
+
+    /**
+     * Create a detached, initialised AddressesRecord
+     */
+    public AddressesRecord(JooqAddresses value) {
+        super(Addresses.ADDRESSES);
+
+        if (value != null) {
+            setId(value.getId());
+            setStreet(value.getStreet());
+            setCity(value.getCity());
+            setState(value.getState());
+            setZip(value.getZip());
+            setCountry(value.getCountry());
+        }
     }
 }

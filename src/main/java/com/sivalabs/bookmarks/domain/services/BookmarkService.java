@@ -21,8 +21,11 @@ public class BookmarkService {
     @Transactional(readOnly = true)
     public List<Bookmark> getAllBookmarks() {
         var bookmarks = repository.findAll();
-        System.out.println(bookmarks);
         return bookmarks;
+    }
+    @Transactional(readOnly = true)
+    public Optional<Bookmark> getBookmarkById(Long id) {
+        return repository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -33,11 +36,6 @@ public class BookmarkService {
     @Transactional(readOnly = true)
     public List<Bookmark> getBookmarksByTag(String tag) {
         return List.of();
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Bookmark> getBookmarkById(Long id) {
-        return Optional.empty();
     }
 
     public Bookmark createBookmark(Bookmark bookmark) {

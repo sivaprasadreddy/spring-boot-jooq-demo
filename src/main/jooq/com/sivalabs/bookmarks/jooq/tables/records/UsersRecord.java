@@ -5,6 +5,7 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Users;
+import com.sivalabs.bookmarks.jooq.tables.pojos.JooqUsers;
 
 import java.time.LocalDateTime;
 
@@ -327,5 +328,22 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
         setAddrId(addrId);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
+    }
+
+    /**
+     * Create a detached, initialised UsersRecord
+     */
+    public UsersRecord(JooqUsers value) {
+        super(Users.USERS);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+            setEmail(value.getEmail());
+            setPassword(value.getPassword());
+            setAddrId(value.getAddrId());
+            setCreatedAt(value.getCreatedAt());
+            setUpdatedAt(value.getUpdatedAt());
+        }
     }
 }

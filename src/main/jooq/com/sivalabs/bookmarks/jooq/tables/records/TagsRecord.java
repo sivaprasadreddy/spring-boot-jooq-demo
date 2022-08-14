@@ -5,6 +5,7 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Tags;
+import com.sivalabs.bookmarks.jooq.tables.pojos.JooqTags;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -140,5 +141,17 @@ public class TagsRecord extends UpdatableRecordImpl<TagsRecord> implements Recor
 
         setId(id);
         setName(name);
+    }
+
+    /**
+     * Create a detached, initialised TagsRecord
+     */
+    public TagsRecord(JooqTags value) {
+        super(Tags.TAGS);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+        }
     }
 }

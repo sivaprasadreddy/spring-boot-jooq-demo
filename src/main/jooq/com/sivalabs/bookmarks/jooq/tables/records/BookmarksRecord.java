@@ -5,6 +5,7 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
+import com.sivalabs.bookmarks.jooq.tables.pojos.JooqBookmarks;
 
 import java.time.LocalDateTime;
 
@@ -290,5 +291,21 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
         setCreatedBy(createdBy);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
+    }
+
+    /**
+     * Create a detached, initialised BookmarksRecord
+     */
+    public BookmarksRecord(JooqBookmarks value) {
+        super(Bookmarks.BOOKMARKS);
+
+        if (value != null) {
+            setId(value.getId());
+            setUrl(value.getUrl());
+            setTitle(value.getTitle());
+            setCreatedBy(value.getCreatedBy());
+            setCreatedAt(value.getCreatedAt());
+            setUpdatedAt(value.getUpdatedAt());
+        }
     }
 }
