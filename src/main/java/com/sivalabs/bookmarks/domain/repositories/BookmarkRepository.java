@@ -49,7 +49,7 @@ public class BookmarkRepository {
     }
 
     public Optional<Bookmark> findById(Long id) {
-        return null;
+        return Optional.empty();
     }
 
     public Bookmark save(Bookmark bookmark) {
