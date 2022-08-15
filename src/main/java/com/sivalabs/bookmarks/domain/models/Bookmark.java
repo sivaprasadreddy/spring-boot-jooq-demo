@@ -4,8 +4,8 @@ import java.util.List;
 
 public record Bookmark (
     Long id,
-    String title,
     String url,
+    String title,
     User createdBy,
     List<Tag> tags
 ){

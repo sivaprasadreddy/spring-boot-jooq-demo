@@ -115,15 +115,16 @@ public class BookmarkRepository {
 
     private SelectJoinStep<Record5<Long, String, String, User, List<Tag>>> getCommonRootSpec() {
         return dsl.select(
-                BOOKMARKS.ID, BOOKMARKS.TITLE, BOOKMARKS.URL,
+                BOOKMARKS.ID, BOOKMARKS.URL, BOOKMARKS.TITLE,
                 row(
                     BOOKMARKS.users().ID,
-                    BOOKMARKS.users().NAME
+                    BOOKMARKS.users().NAME,
+                    BOOKMARKS.users().EMAIL
                 ).mapping(User::new),
                 multiset(
-                        select(BOOKMARK_TAG.tags().ID, BOOKMARK_TAG.tags().NAME)
-                                .from(BOOKMARK_TAG)
-                                .where(BOOKMARK_TAG.BOOKMARK_ID.eq(BOOKMARKS.ID))
+                    select(BOOKMARK_TAG.tags().ID, BOOKMARK_TAG.tags().NAME)
+                    .from(BOOKMARK_TAG)
+                    .where(BOOKMARK_TAG.BOOKMARK_ID.eq(BOOKMARKS.ID))
                 ).as("tags").convertFrom(r -> r.map(mapping(Tag::new)))
             )
             .from(BOOKMARKS);

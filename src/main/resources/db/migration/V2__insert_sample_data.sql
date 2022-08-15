@@ -1,6 +1,10 @@
-INSERT INTO users (email, password, name , created_at) VALUES
-('admin@gmail.com', 'admin', 'Admin', CURRENT_TIMESTAMP),
-('siva@gmail.com', 'siva', 'Siva', CURRENT_TIMESTAMP)
+INSERT INTO addresses (street, city, state,zip,country) VALUES
+('KPHB', 'Hyderabad', 'TS','500072','India')
+;
+
+INSERT INTO users (email, password, name, addr_id, created_at) VALUES
+('admin@gmail.com', 'admin', 'Admin', 1, CURRENT_TIMESTAMP),
+('siva@gmail.com', 'siva', 'Siva', null, CURRENT_TIMESTAMP)
 ;
 
 INSERT INTO tags(name) VALUES

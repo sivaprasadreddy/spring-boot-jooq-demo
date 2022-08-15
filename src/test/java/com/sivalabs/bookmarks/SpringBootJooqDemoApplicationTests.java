@@ -1,10 +1,9 @@
 package com.sivalabs.bookmarks;
 
+import com.sivalabs.bookmarks.common.AbstractIntegrationTest;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SpringBootJooqDemoApplicationTests {
+class SpringBootJooqDemoApplicationTests extends AbstractIntegrationTest {
 
     @Test
     void contextLoads() {
