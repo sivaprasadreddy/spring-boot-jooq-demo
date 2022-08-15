@@ -55,7 +55,7 @@ public class BookmarkRepositoryTest {
 
     @Test
     void shouldCreateBookmark() {
-        User user = new User(1L,"siva", "siva@gmail.com");
+        User user = new User(1L,"siva", "siva@gmail.com", "siva");
         Tag tag1 = new Tag(1L,"java");
         Tag tag2 = new Tag(1L,"spring-cloud");
         Bookmark bookmark = new Bookmark(null, "ss", "https://ss.com", user, List.of(tag1, tag2));

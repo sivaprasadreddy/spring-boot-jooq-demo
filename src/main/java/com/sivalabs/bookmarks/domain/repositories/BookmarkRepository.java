@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.jooq.Record5;
 import org.jooq.SelectJoinStep;
+import org.jooq.impl.DSL;
+import org.jooq.impl.SQLDataType;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -119,8 +121,9 @@ public class BookmarkRepository {
                 row(
                     BOOKMARKS.users().ID,
                     BOOKMARKS.users().NAME,
-                    BOOKMARKS.users().EMAIL
-                ).mapping(User::new),
+                    BOOKMARKS.users().EMAIL,
+                    DSL.inline(null, SQLDataType.VARCHAR).as("password")
+                ).mapping(User::new).as("user"),
                 multiset(
                     select(BOOKMARK_TAG.tags().ID, BOOKMARK_TAG.tags().NAME)
                     .from(BOOKMARK_TAG)
