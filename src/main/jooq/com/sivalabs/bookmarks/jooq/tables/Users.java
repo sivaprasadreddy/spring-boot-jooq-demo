@@ -4,8 +4,8 @@
 package com.sivalabs.bookmarks.jooq.tables;
 
 
-import com.sivalabs.bookmarks.jooq.DefaultSchema;
 import com.sivalabs.bookmarks.jooq.Keys;
+import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.UsersRecord;
 
 import java.time.LocalDateTime;
@@ -16,6 +16,7 @@ import java.util.function.Function;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function7;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -40,7 +41,7 @@ public class Users extends TableImpl<UsersRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>USERS</code>
+     * The reference instance of <code>public.users</code>
      */
     public static final Users USERS = new Users();
 
@@ -53,39 +54,39 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     /**
-     * The column <code>USERS.ID</code>.
+     * The column <code>public.users.id</code>.
      */
-    public final TableField<UsersRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).defaultValue(DSL.field("NEXT VALUE FOR \"PUBLIC\".\"USER_ID_SEQ\"", SQLDataType.BIGINT)), this, "");
+    public final TableField<UsersRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>USERS.NAME</code>.
+     * The column <code>public.users.name</code>.
      */
-    public final TableField<UsersRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(255).nullable(false), this, "");
+    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
-     * The column <code>USERS.EMAIL</code>.
+     * The column <code>public.users.email</code>.
      */
-    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("EMAIL"), SQLDataType.VARCHAR(255).nullable(false), this, "");
+    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
-     * The column <code>USERS.PASSWORD</code>.
+     * The column <code>public.users.password</code>.
      */
-    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("PASSWORD"), SQLDataType.VARCHAR(255).nullable(false), this, "");
+    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
-     * The column <code>USERS.ADDR_ID</code>.
+     * The column <code>public.users.addr_id</code>.
      */
-    public final TableField<UsersRecord, Long> ADDR_ID = createField(DSL.name("ADDR_ID"), SQLDataType.BIGINT, this, "");
+    public final TableField<UsersRecord, Long> ADDR_ID = createField(DSL.name("addr_id"), SQLDataType.BIGINT, this, "");
 
     /**
-     * The column <code>USERS.CREATED_AT</code>.
+     * The column <code>public.users.created_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("CREATED_AT"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<UsersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
-     * The column <code>USERS.UPDATED_AT</code>.
+     * The column <code>public.users.updated_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("UPDATED_AT"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<UsersRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private Users(Name alias, Table<UsersRecord> aliased) {
         this(alias, aliased, null);
@@ -96,24 +97,24 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     /**
-     * Create an aliased <code>USERS</code> table reference
+     * Create an aliased <code>public.users</code> table reference
      */
     public Users(String alias) {
         this(DSL.name(alias), USERS);
     }
 
     /**
-     * Create an aliased <code>USERS</code> table reference
+     * Create an aliased <code>public.users</code> table reference
      */
     public Users(Name alias) {
         this(alias, USERS);
     }
 
     /**
-     * Create a <code>USERS</code> table reference
+     * Create a <code>public.users</code> table reference
      */
     public Users() {
-        this(DSL.name("USERS"), null);
+        this(DSL.name("users"), null);
     }
 
     public <O extends Record> Users(Table<O> child, ForeignKey<O, UsersRecord> key) {
@@ -122,12 +123,17 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<UsersRecord, Long> getIdentity() {
+        return (Identity<UsersRecord, Long>) super.getIdentity();
     }
 
     @Override
     public UniqueKey<UsersRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_4D;
+        return Keys.USERS_PKEY;
     }
 
     @Override
@@ -137,17 +143,17 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public List<ForeignKey<UsersRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.CONSTRAINT_4);
+        return Arrays.asList(Keys.USERS__USERS_ADDR_ID_FKEY);
     }
 
     private transient Addresses _addresses;
 
     /**
-     * Get the implicit join path to the <code>PUBLIC.ADDRESSES</code> table.
+     * Get the implicit join path to the <code>public.addresses</code> table.
      */
     public Addresses addresses() {
         if (_addresses == null)
-            _addresses = new Addresses(this, Keys.CONSTRAINT_4);
+            _addresses = new Addresses(this, Keys.USERS__USERS_ADDR_ID_FKEY);
 
         return _addresses;
     }

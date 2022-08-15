@@ -4,8 +4,8 @@
 package com.sivalabs.bookmarks.jooq.tables;
 
 
-import com.sivalabs.bookmarks.jooq.DefaultSchema;
 import com.sivalabs.bookmarks.jooq.Keys;
+import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.AddressesRecord;
 
 import java.util.function.Function;
@@ -13,6 +13,7 @@ import java.util.function.Function;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function6;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -37,7 +38,7 @@ public class Addresses extends TableImpl<AddressesRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>ADDRESSES</code>
+     * The reference instance of <code>public.addresses</code>
      */
     public static final Addresses ADDRESSES = new Addresses();
 
@@ -50,34 +51,34 @@ public class Addresses extends TableImpl<AddressesRecord> {
     }
 
     /**
-     * The column <code>ADDRESSES.ID</code>.
+     * The column <code>public.addresses.id</code>.
      */
-    public final TableField<AddressesRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).defaultValue(DSL.field("NEXT VALUE FOR \"PUBLIC\".\"ADDRESS_ID_SEQ\"", SQLDataType.BIGINT)), this, "");
+    public final TableField<AddressesRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>ADDRESSES.STREET</code>.
+     * The column <code>public.addresses.street</code>.
      */
-    public final TableField<AddressesRecord, String> STREET = createField(DSL.name("STREET"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<AddressesRecord, String> STREET = createField(DSL.name("street"), SQLDataType.VARCHAR(255), this, "");
 
     /**
-     * The column <code>ADDRESSES.CITY</code>.
+     * The column <code>public.addresses.city</code>.
      */
-    public final TableField<AddressesRecord, String> CITY = createField(DSL.name("CITY"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<AddressesRecord, String> CITY = createField(DSL.name("city"), SQLDataType.VARCHAR(255), this, "");
 
     /**
-     * The column <code>ADDRESSES.STATE</code>.
+     * The column <code>public.addresses.state</code>.
      */
-    public final TableField<AddressesRecord, String> STATE = createField(DSL.name("STATE"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<AddressesRecord, String> STATE = createField(DSL.name("state"), SQLDataType.VARCHAR(255), this, "");
 
     /**
-     * The column <code>ADDRESSES.ZIP</code>.
+     * The column <code>public.addresses.zip</code>.
      */
-    public final TableField<AddressesRecord, String> ZIP = createField(DSL.name("ZIP"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<AddressesRecord, String> ZIP = createField(DSL.name("zip"), SQLDataType.VARCHAR(255), this, "");
 
     /**
-     * The column <code>ADDRESSES.COUNTRY</code>.
+     * The column <code>public.addresses.country</code>.
      */
-    public final TableField<AddressesRecord, String> COUNTRY = createField(DSL.name("COUNTRY"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<AddressesRecord, String> COUNTRY = createField(DSL.name("country"), SQLDataType.VARCHAR(20), this, "");
 
     private Addresses(Name alias, Table<AddressesRecord> aliased) {
         this(alias, aliased, null);
@@ -88,24 +89,24 @@ public class Addresses extends TableImpl<AddressesRecord> {
     }
 
     /**
-     * Create an aliased <code>ADDRESSES</code> table reference
+     * Create an aliased <code>public.addresses</code> table reference
      */
     public Addresses(String alias) {
         this(DSL.name(alias), ADDRESSES);
     }
 
     /**
-     * Create an aliased <code>ADDRESSES</code> table reference
+     * Create an aliased <code>public.addresses</code> table reference
      */
     public Addresses(Name alias) {
         this(alias, ADDRESSES);
     }
 
     /**
-     * Create a <code>ADDRESSES</code> table reference
+     * Create a <code>public.addresses</code> table reference
      */
     public Addresses() {
-        this(DSL.name("ADDRESSES"), null);
+        this(DSL.name("addresses"), null);
     }
 
     public <O extends Record> Addresses(Table<O> child, ForeignKey<O, AddressesRecord> key) {
@@ -114,12 +115,17 @@ public class Addresses extends TableImpl<AddressesRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<AddressesRecord, Long> getIdentity() {
+        return (Identity<AddressesRecord, Long>) super.getIdentity();
     }
 
     @Override
     public UniqueKey<AddressesRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_D;
+        return Keys.ADDRESSES_PKEY;
     }
 
     @Override

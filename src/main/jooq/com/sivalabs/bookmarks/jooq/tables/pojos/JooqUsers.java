@@ -55,98 +55,98 @@ public class JooqUsers implements Serializable {
     }
 
     /**
-     * Getter for <code>USERS.ID</code>.
+     * Getter for <code>public.users.id</code>.
      */
     public Long getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>USERS.ID</code>.
+     * Setter for <code>public.users.id</code>.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>USERS.NAME</code>.
+     * Getter for <code>public.users.name</code>.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * Setter for <code>USERS.NAME</code>.
+     * Setter for <code>public.users.name</code>.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Getter for <code>USERS.EMAIL</code>.
+     * Getter for <code>public.users.email</code>.
      */
     public String getEmail() {
         return this.email;
     }
 
     /**
-     * Setter for <code>USERS.EMAIL</code>.
+     * Setter for <code>public.users.email</code>.
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Getter for <code>USERS.PASSWORD</code>.
+     * Getter for <code>public.users.password</code>.
      */
     public String getPassword() {
         return this.password;
     }
 
     /**
-     * Setter for <code>USERS.PASSWORD</code>.
+     * Setter for <code>public.users.password</code>.
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * Getter for <code>USERS.ADDR_ID</code>.
+     * Getter for <code>public.users.addr_id</code>.
      */
     public Long getAddrId() {
         return this.addrId;
     }
 
     /**
-     * Setter for <code>USERS.ADDR_ID</code>.
+     * Setter for <code>public.users.addr_id</code>.
      */
     public void setAddrId(Long addrId) {
         this.addrId = addrId;
     }
 
     /**
-     * Getter for <code>USERS.CREATED_AT</code>.
+     * Getter for <code>public.users.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
     /**
-     * Setter for <code>USERS.CREATED_AT</code>.
+     * Setter for <code>public.users.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     /**
-     * Getter for <code>USERS.UPDATED_AT</code>.
+     * Getter for <code>public.users.updated_at</code>.
      */
     public LocalDateTime getUpdatedAt() {
         return this.updatedAt;
     }
 
     /**
-     * Setter for <code>USERS.UPDATED_AT</code>.
+     * Setter for <code>public.users.updated_at</code>.
      */
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;

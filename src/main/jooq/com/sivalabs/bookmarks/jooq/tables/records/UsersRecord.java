@@ -25,98 +25,98 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>USERS.ID</code>.
+     * Setter for <code>public.users.id</code>.
      */
     public void setId(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>USERS.ID</code>.
+     * Getter for <code>public.users.id</code>.
      */
     public Long getId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>USERS.NAME</code>.
+     * Setter for <code>public.users.name</code>.
      */
     public void setName(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>USERS.NAME</code>.
+     * Getter for <code>public.users.name</code>.
      */
     public String getName() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>USERS.EMAIL</code>.
+     * Setter for <code>public.users.email</code>.
      */
     public void setEmail(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>USERS.EMAIL</code>.
+     * Getter for <code>public.users.email</code>.
      */
     public String getEmail() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>USERS.PASSWORD</code>.
+     * Setter for <code>public.users.password</code>.
      */
     public void setPassword(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>USERS.PASSWORD</code>.
+     * Getter for <code>public.users.password</code>.
      */
     public String getPassword() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>USERS.ADDR_ID</code>.
+     * Setter for <code>public.users.addr_id</code>.
      */
     public void setAddrId(Long value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>USERS.ADDR_ID</code>.
+     * Getter for <code>public.users.addr_id</code>.
      */
     public Long getAddrId() {
         return (Long) get(4);
     }
 
     /**
-     * Setter for <code>USERS.CREATED_AT</code>.
+     * Setter for <code>public.users.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>USERS.CREATED_AT</code>.
+     * Getter for <code>public.users.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(5);
     }
 
     /**
-     * Setter for <code>USERS.UPDATED_AT</code>.
+     * Setter for <code>public.users.updated_at</code>.
      */
     public void setUpdatedAt(LocalDateTime value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>USERS.UPDATED_AT</code>.
+     * Getter for <code>public.users.updated_at</code>.
      */
     public LocalDateTime getUpdatedAt() {
         return (LocalDateTime) get(6);

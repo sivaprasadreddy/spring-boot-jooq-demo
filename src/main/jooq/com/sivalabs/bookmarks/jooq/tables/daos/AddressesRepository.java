@@ -41,7 +41,7 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>ID BETWEEN lowerInclusive AND
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfId(Long lowerInclusive, Long upperInclusive) {
@@ -49,28 +49,28 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>ID IN (values)</code>
+     * Fetch records that have <code>id IN (values)</code>
      */
     public List<JooqAddresses> fetchById(Long... values) {
         return fetch(Addresses.ADDRESSES.ID, values);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public JooqAddresses fetchOneById(Long value) {
         return fetchOne(Addresses.ADDRESSES.ID, value);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public Optional<JooqAddresses> fetchOptionalById(Long value) {
         return fetchOptional(Addresses.ADDRESSES.ID, value);
     }
 
     /**
-     * Fetch records that have <code>STREET BETWEEN lowerInclusive AND
+     * Fetch records that have <code>street BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfStreet(String lowerInclusive, String upperInclusive) {
@@ -78,14 +78,14 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>STREET IN (values)</code>
+     * Fetch records that have <code>street IN (values)</code>
      */
     public List<JooqAddresses> fetchByStreet(String... values) {
         return fetch(Addresses.ADDRESSES.STREET, values);
     }
 
     /**
-     * Fetch records that have <code>CITY BETWEEN lowerInclusive AND
+     * Fetch records that have <code>city BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfCity(String lowerInclusive, String upperInclusive) {
@@ -93,14 +93,14 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>CITY IN (values)</code>
+     * Fetch records that have <code>city IN (values)</code>
      */
     public List<JooqAddresses> fetchByCity(String... values) {
         return fetch(Addresses.ADDRESSES.CITY, values);
     }
 
     /**
-     * Fetch records that have <code>STATE BETWEEN lowerInclusive AND
+     * Fetch records that have <code>state BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfState(String lowerInclusive, String upperInclusive) {
@@ -108,14 +108,14 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>STATE IN (values)</code>
+     * Fetch records that have <code>state IN (values)</code>
      */
     public List<JooqAddresses> fetchByState(String... values) {
         return fetch(Addresses.ADDRESSES.STATE, values);
     }
 
     /**
-     * Fetch records that have <code>ZIP BETWEEN lowerInclusive AND
+     * Fetch records that have <code>zip BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfZip(String lowerInclusive, String upperInclusive) {
@@ -123,14 +123,14 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>ZIP IN (values)</code>
+     * Fetch records that have <code>zip IN (values)</code>
      */
     public List<JooqAddresses> fetchByZip(String... values) {
         return fetch(Addresses.ADDRESSES.ZIP, values);
     }
 
     /**
-     * Fetch records that have <code>COUNTRY BETWEEN lowerInclusive AND
+     * Fetch records that have <code>country BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqAddresses> fetchRangeOfCountry(String lowerInclusive, String upperInclusive) {
@@ -138,7 +138,7 @@ public class AddressesRepository extends DAOImpl<AddressesRecord, JooqAddresses,
     }
 
     /**
-     * Fetch records that have <code>COUNTRY IN (values)</code>
+     * Fetch records that have <code>country IN (values)</code>
      */
     public List<JooqAddresses> fetchByCountry(String... values) {
         return fetch(Addresses.ADDRESSES.COUNTRY, values);

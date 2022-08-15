@@ -34,28 +34,28 @@ public class JooqTags implements Serializable {
     }
 
     /**
-     * Getter for <code>TAGS.ID</code>.
+     * Getter for <code>public.tags.id</code>.
      */
     public Long getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>TAGS.ID</code>.
+     * Setter for <code>public.tags.id</code>.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>TAGS.NAME</code>.
+     * Getter for <code>public.tags.name</code>.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * Setter for <code>TAGS.NAME</code>.
+     * Setter for <code>public.tags.name</code>.
      */
     public void setName(String name) {
         this.name = name;

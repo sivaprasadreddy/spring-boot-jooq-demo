@@ -23,28 +23,28 @@ public class TagsRecord extends UpdatableRecordImpl<TagsRecord> implements Recor
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>TAGS.ID</code>.
+     * Setter for <code>public.tags.id</code>.
      */
     public void setId(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>TAGS.ID</code>.
+     * Getter for <code>public.tags.id</code>.
      */
     public Long getId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>TAGS.NAME</code>.
+     * Setter for <code>public.tags.name</code>.
      */
     public void setName(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>TAGS.NAME</code>.
+     * Getter for <code>public.tags.name</code>.
      */
     public String getName() {
         return (String) get(1);

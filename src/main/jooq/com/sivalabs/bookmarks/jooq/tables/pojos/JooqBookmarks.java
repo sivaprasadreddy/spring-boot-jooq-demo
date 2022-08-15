@@ -51,84 +51,84 @@ public class JooqBookmarks implements Serializable {
     }
 
     /**
-     * Getter for <code>BOOKMARKS.ID</code>.
+     * Getter for <code>public.bookmarks.id</code>.
      */
     public Long getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.ID</code>.
+     * Setter for <code>public.bookmarks.id</code>.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>BOOKMARKS.URL</code>.
+     * Getter for <code>public.bookmarks.url</code>.
      */
     public String getUrl() {
         return this.url;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.URL</code>.
+     * Setter for <code>public.bookmarks.url</code>.
      */
     public void setUrl(String url) {
         this.url = url;
     }
 
     /**
-     * Getter for <code>BOOKMARKS.TITLE</code>.
+     * Getter for <code>public.bookmarks.title</code>.
      */
     public String getTitle() {
         return this.title;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.TITLE</code>.
+     * Setter for <code>public.bookmarks.title</code>.
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Getter for <code>BOOKMARKS.CREATED_BY</code>.
+     * Getter for <code>public.bookmarks.created_by</code>.
      */
     public Long getCreatedBy() {
         return this.createdBy;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.CREATED_BY</code>.
+     * Setter for <code>public.bookmarks.created_by</code>.
      */
     public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
     /**
-     * Getter for <code>BOOKMARKS.CREATED_AT</code>.
+     * Getter for <code>public.bookmarks.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.CREATED_AT</code>.
+     * Setter for <code>public.bookmarks.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     /**
-     * Getter for <code>BOOKMARKS.UPDATED_AT</code>.
+     * Getter for <code>public.bookmarks.updated_at</code>.
      */
     public LocalDateTime getUpdatedAt() {
         return this.updatedAt;
     }
 
     /**
-     * Setter for <code>BOOKMARKS.UPDATED_AT</code>.
+     * Setter for <code>public.bookmarks.updated_at</code>.
      */
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;

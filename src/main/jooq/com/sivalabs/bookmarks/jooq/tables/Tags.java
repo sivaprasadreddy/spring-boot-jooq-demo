@@ -4,8 +4,8 @@
 package com.sivalabs.bookmarks.jooq.tables;
 
 
-import com.sivalabs.bookmarks.jooq.DefaultSchema;
 import com.sivalabs.bookmarks.jooq.Keys;
+import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.TagsRecord;
 
 import java.util.Arrays;
@@ -15,6 +15,7 @@ import java.util.function.Function;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function2;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -39,7 +40,7 @@ public class Tags extends TableImpl<TagsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>TAGS</code>
+     * The reference instance of <code>public.tags</code>
      */
     public static final Tags TAGS = new Tags();
 
@@ -52,14 +53,14 @@ public class Tags extends TableImpl<TagsRecord> {
     }
 
     /**
-     * The column <code>TAGS.ID</code>.
+     * The column <code>public.tags.id</code>.
      */
-    public final TableField<TagsRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).defaultValue(DSL.field("NEXT VALUE FOR \"PUBLIC\".\"TAG_ID_SEQ\"", SQLDataType.BIGINT)), this, "");
+    public final TableField<TagsRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>TAGS.NAME</code>.
+     * The column <code>public.tags.name</code>.
      */
-    public final TableField<TagsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+    public final TableField<TagsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     private Tags(Name alias, Table<TagsRecord> aliased) {
         this(alias, aliased, null);
@@ -70,24 +71,24 @@ public class Tags extends TableImpl<TagsRecord> {
     }
 
     /**
-     * Create an aliased <code>TAGS</code> table reference
+     * Create an aliased <code>public.tags</code> table reference
      */
     public Tags(String alias) {
         this(DSL.name(alias), TAGS);
     }
 
     /**
-     * Create an aliased <code>TAGS</code> table reference
+     * Create an aliased <code>public.tags</code> table reference
      */
     public Tags(Name alias) {
         this(alias, TAGS);
     }
 
     /**
-     * Create a <code>TAGS</code> table reference
+     * Create a <code>public.tags</code> table reference
      */
     public Tags() {
-        this(DSL.name("TAGS"), null);
+        this(DSL.name("tags"), null);
     }
 
     public <O extends Record> Tags(Table<O> child, ForeignKey<O, TagsRecord> key) {
@@ -96,12 +97,17 @@ public class Tags extends TableImpl<TagsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<TagsRecord, Long> getIdentity() {
+        return (Identity<TagsRecord, Long>) super.getIdentity();
     }
 
     @Override
     public UniqueKey<TagsRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_2;
+        return Keys.TAGS_PKEY;
     }
 
     @Override

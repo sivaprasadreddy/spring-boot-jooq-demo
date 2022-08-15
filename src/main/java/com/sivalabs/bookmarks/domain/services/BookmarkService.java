@@ -20,30 +20,30 @@ public class BookmarkService {
 
     @Transactional(readOnly = true)
     public List<Bookmark> getAllBookmarks() {
-        var bookmarks = repository.findAll();
-        return bookmarks;
+        return repository.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public List<Bookmark> searchBookmarks(String query) {
+        return repository.searchBookmarksByTitle(query);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Bookmark> getBookmarksByTag(String tag) {
+        return repository.fetchBookmarksByTag(tag);
+    }
+
     @Transactional(readOnly = true)
     public Optional<Bookmark> getBookmarkById(Long id) {
         return repository.findById(id);
     }
 
-    @Transactional(readOnly = true)
-    public List<Bookmark> searchBookmarks(String query) {
-        return List.of();
-    }
-
-    @Transactional(readOnly = true)
-    public List<Bookmark> getBookmarksByTag(String tag) {
-        return List.of();
-    }
-
     public Bookmark createBookmark(Bookmark bookmark) {
-        return null;
+        return repository.save(bookmark);
     }
 
     @Transactional(readOnly = true)
     public List<Tag> findAllTags() {
-        return List.of();
+        return repository.findAllTags();
     }
 }

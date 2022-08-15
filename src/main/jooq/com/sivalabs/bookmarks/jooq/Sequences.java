@@ -10,28 +10,28 @@ import org.jooq.impl.SQLDataType;
 
 
 /**
- * Convenience access to all sequences in the default schema.
+ * Convenience access to all sequences in public.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Sequences {
 
     /**
-     * The sequence <code>ADDRESS_ID_SEQ</code>
+     * The sequence <code>public.address_id_seq</code>
      */
-    public static final Sequence<Long> ADDRESS_ID_SEQ = Internal.createSequence("ADDRESS_ID_SEQ", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> ADDRESS_ID_SEQ = Internal.createSequence("address_id_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 
     /**
-     * The sequence <code>BOOKMARK_ID_SEQ</code>
+     * The sequence <code>public.bookmark_id_seq</code>
      */
-    public static final Sequence<Long> BOOKMARK_ID_SEQ = Internal.createSequence("BOOKMARK_ID_SEQ", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> BOOKMARK_ID_SEQ = Internal.createSequence("bookmark_id_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 
     /**
-     * The sequence <code>TAG_ID_SEQ</code>
+     * The sequence <code>public.tag_id_seq</code>
      */
-    public static final Sequence<Long> TAG_ID_SEQ = Internal.createSequence("TAG_ID_SEQ", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> TAG_ID_SEQ = Internal.createSequence("tag_id_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 
     /**
-     * The sequence <code>USER_ID_SEQ</code>
+     * The sequence <code>public.user_id_seq</code>
      */
-    public static final Sequence<Long> USER_ID_SEQ = Internal.createSequence("USER_ID_SEQ", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> USER_ID_SEQ = Internal.createSequence("user_id_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);
 }

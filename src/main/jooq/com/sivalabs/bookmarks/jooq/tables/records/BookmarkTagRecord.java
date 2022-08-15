@@ -22,28 +22,28 @@ public class BookmarkTagRecord extends TableRecordImpl<BookmarkTagRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>BOOKMARK_TAG.BOOKMARK_ID</code>.
+     * Setter for <code>public.bookmark_tag.bookmark_id</code>.
      */
     public void setBookmarkId(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>BOOKMARK_TAG.BOOKMARK_ID</code>.
+     * Getter for <code>public.bookmark_tag.bookmark_id</code>.
      */
     public Long getBookmarkId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>BOOKMARK_TAG.TAG_ID</code>.
+     * Setter for <code>public.bookmark_tag.tag_id</code>.
      */
     public void setTagId(Long value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>BOOKMARK_TAG.TAG_ID</code>.
+     * Getter for <code>public.bookmark_tag.tag_id</code>.
      */
     public Long getTagId() {
         return (Long) get(1);

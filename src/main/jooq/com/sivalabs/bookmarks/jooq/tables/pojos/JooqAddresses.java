@@ -50,84 +50,84 @@ public class JooqAddresses implements Serializable {
     }
 
     /**
-     * Getter for <code>ADDRESSES.ID</code>.
+     * Getter for <code>public.addresses.id</code>.
      */
     public Long getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>ADDRESSES.ID</code>.
+     * Setter for <code>public.addresses.id</code>.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>ADDRESSES.STREET</code>.
+     * Getter for <code>public.addresses.street</code>.
      */
     public String getStreet() {
         return this.street;
     }
 
     /**
-     * Setter for <code>ADDRESSES.STREET</code>.
+     * Setter for <code>public.addresses.street</code>.
      */
     public void setStreet(String street) {
         this.street = street;
     }
 
     /**
-     * Getter for <code>ADDRESSES.CITY</code>.
+     * Getter for <code>public.addresses.city</code>.
      */
     public String getCity() {
         return this.city;
     }
 
     /**
-     * Setter for <code>ADDRESSES.CITY</code>.
+     * Setter for <code>public.addresses.city</code>.
      */
     public void setCity(String city) {
         this.city = city;
     }
 
     /**
-     * Getter for <code>ADDRESSES.STATE</code>.
+     * Getter for <code>public.addresses.state</code>.
      */
     public String getState() {
         return this.state;
     }
 
     /**
-     * Setter for <code>ADDRESSES.STATE</code>.
+     * Setter for <code>public.addresses.state</code>.
      */
     public void setState(String state) {
         this.state = state;
     }
 
     /**
-     * Getter for <code>ADDRESSES.ZIP</code>.
+     * Getter for <code>public.addresses.zip</code>.
      */
     public String getZip() {
         return this.zip;
     }
 
     /**
-     * Setter for <code>ADDRESSES.ZIP</code>.
+     * Setter for <code>public.addresses.zip</code>.
      */
     public void setZip(String zip) {
         this.zip = zip;
     }
 
     /**
-     * Getter for <code>ADDRESSES.COUNTRY</code>.
+     * Getter for <code>public.addresses.country</code>.
      */
     public String getCountry() {
         return this.country;
     }
 
     /**
-     * Setter for <code>ADDRESSES.COUNTRY</code>.
+     * Setter for <code>public.addresses.country</code>.
      */
     public void setCountry(String country) {
         this.country = country;

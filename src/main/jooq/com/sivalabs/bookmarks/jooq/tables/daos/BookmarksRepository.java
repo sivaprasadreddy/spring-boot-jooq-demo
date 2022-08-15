@@ -42,7 +42,7 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>ID BETWEEN lowerInclusive AND
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfId(Long lowerInclusive, Long upperInclusive) {
@@ -50,28 +50,28 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>ID IN (values)</code>
+     * Fetch records that have <code>id IN (values)</code>
      */
     public List<JooqBookmarks> fetchById(Long... values) {
         return fetch(Bookmarks.BOOKMARKS.ID, values);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public JooqBookmarks fetchOneById(Long value) {
         return fetchOne(Bookmarks.BOOKMARKS.ID, value);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public Optional<JooqBookmarks> fetchOptionalById(Long value) {
         return fetchOptional(Bookmarks.BOOKMARKS.ID, value);
     }
 
     /**
-     * Fetch records that have <code>URL BETWEEN lowerInclusive AND
+     * Fetch records that have <code>url BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfUrl(String lowerInclusive, String upperInclusive) {
@@ -79,14 +79,14 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>URL IN (values)</code>
+     * Fetch records that have <code>url IN (values)</code>
      */
     public List<JooqBookmarks> fetchByUrl(String... values) {
         return fetch(Bookmarks.BOOKMARKS.URL, values);
     }
 
     /**
-     * Fetch records that have <code>TITLE BETWEEN lowerInclusive AND
+     * Fetch records that have <code>title BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfTitle(String lowerInclusive, String upperInclusive) {
@@ -94,14 +94,14 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>TITLE IN (values)</code>
+     * Fetch records that have <code>title IN (values)</code>
      */
     public List<JooqBookmarks> fetchByTitle(String... values) {
         return fetch(Bookmarks.BOOKMARKS.TITLE, values);
     }
 
     /**
-     * Fetch records that have <code>CREATED_BY BETWEEN lowerInclusive AND
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfCreatedBy(Long lowerInclusive, Long upperInclusive) {
@@ -109,14 +109,14 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>CREATED_BY IN (values)</code>
+     * Fetch records that have <code>created_by IN (values)</code>
      */
     public List<JooqBookmarks> fetchByCreatedBy(Long... values) {
         return fetch(Bookmarks.BOOKMARKS.CREATED_BY, values);
     }
 
     /**
-     * Fetch records that have <code>CREATED_AT BETWEEN lowerInclusive AND
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
@@ -124,14 +124,14 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>CREATED_AT IN (values)</code>
+     * Fetch records that have <code>created_at IN (values)</code>
      */
     public List<JooqBookmarks> fetchByCreatedAt(LocalDateTime... values) {
         return fetch(Bookmarks.BOOKMARKS.CREATED_AT, values);
     }
 
     /**
-     * Fetch records that have <code>UPDATED_AT BETWEEN lowerInclusive AND
+     * Fetch records that have <code>updated_at BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqBookmarks> fetchRangeOfUpdatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
@@ -139,7 +139,7 @@ public class BookmarksRepository extends DAOImpl<BookmarksRecord, JooqBookmarks,
     }
 
     /**
-     * Fetch records that have <code>UPDATED_AT IN (values)</code>
+     * Fetch records that have <code>updated_at IN (values)</code>
      */
     public List<JooqBookmarks> fetchByUpdatedAt(LocalDateTime... values) {
         return fetch(Bookmarks.BOOKMARKS.UPDATED_AT, values);

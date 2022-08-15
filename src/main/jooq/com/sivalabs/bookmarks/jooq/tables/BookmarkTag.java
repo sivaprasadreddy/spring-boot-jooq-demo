@@ -4,8 +4,8 @@
 package com.sivalabs.bookmarks.jooq.tables;
 
 
-import com.sivalabs.bookmarks.jooq.DefaultSchema;
 import com.sivalabs.bookmarks.jooq.Keys;
+import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.BookmarkTagRecord;
 
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class BookmarkTag extends TableImpl<BookmarkTagRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>BOOKMARK_TAG</code>
+     * The reference instance of <code>public.bookmark_tag</code>
      */
     public static final BookmarkTag BOOKMARK_TAG = new BookmarkTag();
 
@@ -51,14 +51,14 @@ public class BookmarkTag extends TableImpl<BookmarkTagRecord> {
     }
 
     /**
-     * The column <code>BOOKMARK_TAG.BOOKMARK_ID</code>.
+     * The column <code>public.bookmark_tag.bookmark_id</code>.
      */
-    public final TableField<BookmarkTagRecord, Long> BOOKMARK_ID = createField(DSL.name("BOOKMARK_ID"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<BookmarkTagRecord, Long> BOOKMARK_ID = createField(DSL.name("bookmark_id"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>BOOKMARK_TAG.TAG_ID</code>.
+     * The column <code>public.bookmark_tag.tag_id</code>.
      */
-    public final TableField<BookmarkTagRecord, Long> TAG_ID = createField(DSL.name("TAG_ID"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<BookmarkTagRecord, Long> TAG_ID = createField(DSL.name("tag_id"), SQLDataType.BIGINT.nullable(false), this, "");
 
     private BookmarkTag(Name alias, Table<BookmarkTagRecord> aliased) {
         this(alias, aliased, null);
@@ -69,24 +69,24 @@ public class BookmarkTag extends TableImpl<BookmarkTagRecord> {
     }
 
     /**
-     * Create an aliased <code>BOOKMARK_TAG</code> table reference
+     * Create an aliased <code>public.bookmark_tag</code> table reference
      */
     public BookmarkTag(String alias) {
         this(DSL.name(alias), BOOKMARK_TAG);
     }
 
     /**
-     * Create an aliased <code>BOOKMARK_TAG</code> table reference
+     * Create an aliased <code>public.bookmark_tag</code> table reference
      */
     public BookmarkTag(Name alias) {
         this(alias, BOOKMARK_TAG);
     }
 
     /**
-     * Create a <code>BOOKMARK_TAG</code> table reference
+     * Create a <code>public.bookmark_tag</code> table reference
      */
     public BookmarkTag() {
-        this(DSL.name("BOOKMARK_TAG"), null);
+        this(DSL.name("bookmark_tag"), null);
     }
 
     public <O extends Record> BookmarkTag(Table<O> child, ForeignKey<O, BookmarkTagRecord> key) {
@@ -95,33 +95,33 @@ public class BookmarkTag extends TableImpl<BookmarkTagRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public List<ForeignKey<BookmarkTagRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.CONSTRAINT_F, Keys.CONSTRAINT_FE);
+        return Arrays.asList(Keys.BOOKMARK_TAG__BOOKMARK_TAG_BOOKMARK_ID_FKEY, Keys.BOOKMARK_TAG__BOOKMARK_TAG_TAG_ID_FKEY);
     }
 
     private transient Bookmarks _bookmarks;
     private transient Tags _tags;
 
     /**
-     * Get the implicit join path to the <code>PUBLIC.BOOKMARKS</code> table.
+     * Get the implicit join path to the <code>public.bookmarks</code> table.
      */
     public Bookmarks bookmarks() {
         if (_bookmarks == null)
-            _bookmarks = new Bookmarks(this, Keys.CONSTRAINT_F);
+            _bookmarks = new Bookmarks(this, Keys.BOOKMARK_TAG__BOOKMARK_TAG_BOOKMARK_ID_FKEY);
 
         return _bookmarks;
     }
 
     /**
-     * Get the implicit join path to the <code>PUBLIC.TAGS</code> table.
+     * Get the implicit join path to the <code>public.tags</code> table.
      */
     public Tags tags() {
         if (_tags == null)
-            _tags = new Tags(this, Keys.CONSTRAINT_FE);
+            _tags = new Tags(this, Keys.BOOKMARK_TAG__BOOKMARK_TAG_TAG_ID_FKEY);
 
         return _tags;
     }

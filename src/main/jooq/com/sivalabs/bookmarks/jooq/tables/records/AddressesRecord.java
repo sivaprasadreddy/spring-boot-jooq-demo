@@ -23,84 +23,84 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>ADDRESSES.ID</code>.
+     * Setter for <code>public.addresses.id</code>.
      */
     public void setId(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.ID</code>.
+     * Getter for <code>public.addresses.id</code>.
      */
     public Long getId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>ADDRESSES.STREET</code>.
+     * Setter for <code>public.addresses.street</code>.
      */
     public void setStreet(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.STREET</code>.
+     * Getter for <code>public.addresses.street</code>.
      */
     public String getStreet() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>ADDRESSES.CITY</code>.
+     * Setter for <code>public.addresses.city</code>.
      */
     public void setCity(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.CITY</code>.
+     * Getter for <code>public.addresses.city</code>.
      */
     public String getCity() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>ADDRESSES.STATE</code>.
+     * Setter for <code>public.addresses.state</code>.
      */
     public void setState(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.STATE</code>.
+     * Getter for <code>public.addresses.state</code>.
      */
     public String getState() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>ADDRESSES.ZIP</code>.
+     * Setter for <code>public.addresses.zip</code>.
      */
     public void setZip(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.ZIP</code>.
+     * Getter for <code>public.addresses.zip</code>.
      */
     public String getZip() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>ADDRESSES.COUNTRY</code>.
+     * Setter for <code>public.addresses.country</code>.
      */
     public void setCountry(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>ADDRESSES.COUNTRY</code>.
+     * Getter for <code>public.addresses.country</code>.
      */
     public String getCountry() {
         return (String) get(5);

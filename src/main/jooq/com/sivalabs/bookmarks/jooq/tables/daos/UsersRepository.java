@@ -42,7 +42,7 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>ID BETWEEN lowerInclusive AND
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfId(Long lowerInclusive, Long upperInclusive) {
@@ -50,28 +50,28 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>ID IN (values)</code>
+     * Fetch records that have <code>id IN (values)</code>
      */
     public List<JooqUsers> fetchById(Long... values) {
         return fetch(Users.USERS.ID, values);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public JooqUsers fetchOneById(Long value) {
         return fetchOne(Users.USERS.ID, value);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public Optional<JooqUsers> fetchOptionalById(Long value) {
         return fetchOptional(Users.USERS.ID, value);
     }
 
     /**
-     * Fetch records that have <code>NAME BETWEEN lowerInclusive AND
+     * Fetch records that have <code>name BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfName(String lowerInclusive, String upperInclusive) {
@@ -79,14 +79,14 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>NAME IN (values)</code>
+     * Fetch records that have <code>name IN (values)</code>
      */
     public List<JooqUsers> fetchByName(String... values) {
         return fetch(Users.USERS.NAME, values);
     }
 
     /**
-     * Fetch records that have <code>EMAIL BETWEEN lowerInclusive AND
+     * Fetch records that have <code>email BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfEmail(String lowerInclusive, String upperInclusive) {
@@ -94,28 +94,28 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>EMAIL IN (values)</code>
+     * Fetch records that have <code>email IN (values)</code>
      */
     public List<JooqUsers> fetchByEmail(String... values) {
         return fetch(Users.USERS.EMAIL, values);
     }
 
     /**
-     * Fetch a unique record that has <code>EMAIL = value</code>
+     * Fetch a unique record that has <code>email = value</code>
      */
     public JooqUsers fetchOneByEmail(String value) {
         return fetchOne(Users.USERS.EMAIL, value);
     }
 
     /**
-     * Fetch a unique record that has <code>EMAIL = value</code>
+     * Fetch a unique record that has <code>email = value</code>
      */
     public Optional<JooqUsers> fetchOptionalByEmail(String value) {
         return fetchOptional(Users.USERS.EMAIL, value);
     }
 
     /**
-     * Fetch records that have <code>PASSWORD BETWEEN lowerInclusive AND
+     * Fetch records that have <code>password BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfPassword(String lowerInclusive, String upperInclusive) {
@@ -123,14 +123,14 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>PASSWORD IN (values)</code>
+     * Fetch records that have <code>password IN (values)</code>
      */
     public List<JooqUsers> fetchByPassword(String... values) {
         return fetch(Users.USERS.PASSWORD, values);
     }
 
     /**
-     * Fetch records that have <code>ADDR_ID BETWEEN lowerInclusive AND
+     * Fetch records that have <code>addr_id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfAddrId(Long lowerInclusive, Long upperInclusive) {
@@ -138,14 +138,14 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>ADDR_ID IN (values)</code>
+     * Fetch records that have <code>addr_id IN (values)</code>
      */
     public List<JooqUsers> fetchByAddrId(Long... values) {
         return fetch(Users.USERS.ADDR_ID, values);
     }
 
     /**
-     * Fetch records that have <code>CREATED_AT BETWEEN lowerInclusive AND
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
@@ -153,14 +153,14 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>CREATED_AT IN (values)</code>
+     * Fetch records that have <code>created_at IN (values)</code>
      */
     public List<JooqUsers> fetchByCreatedAt(LocalDateTime... values) {
         return fetch(Users.USERS.CREATED_AT, values);
     }
 
     /**
-     * Fetch records that have <code>UPDATED_AT BETWEEN lowerInclusive AND
+     * Fetch records that have <code>updated_at BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqUsers> fetchRangeOfUpdatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
@@ -168,7 +168,7 @@ public class UsersRepository extends DAOImpl<UsersRecord, JooqUsers, Long> {
     }
 
     /**
-     * Fetch records that have <code>UPDATED_AT IN (values)</code>
+     * Fetch records that have <code>updated_at IN (values)</code>
      */
     public List<JooqUsers> fetchByUpdatedAt(LocalDateTime... values) {
         return fetch(Users.USERS.UPDATED_AT, values);

@@ -34,28 +34,28 @@ public class JooqBookmarkTag implements Serializable {
     }
 
     /**
-     * Getter for <code>BOOKMARK_TAG.BOOKMARK_ID</code>.
+     * Getter for <code>public.bookmark_tag.bookmark_id</code>.
      */
     public Long getBookmarkId() {
         return this.bookmarkId;
     }
 
     /**
-     * Setter for <code>BOOKMARK_TAG.BOOKMARK_ID</code>.
+     * Setter for <code>public.bookmark_tag.bookmark_id</code>.
      */
     public void setBookmarkId(Long bookmarkId) {
         this.bookmarkId = bookmarkId;
     }
 
     /**
-     * Getter for <code>BOOKMARK_TAG.TAG_ID</code>.
+     * Getter for <code>public.bookmark_tag.tag_id</code>.
      */
     public Long getTagId() {
         return this.tagId;
     }
 
     /**
-     * Setter for <code>BOOKMARK_TAG.TAG_ID</code>.
+     * Setter for <code>public.bookmark_tag.tag_id</code>.
      */
     public void setTagId(Long tagId) {
         this.tagId = tagId;

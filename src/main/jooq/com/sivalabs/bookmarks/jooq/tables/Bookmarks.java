@@ -4,8 +4,8 @@
 package com.sivalabs.bookmarks.jooq.tables;
 
 
-import com.sivalabs.bookmarks.jooq.DefaultSchema;
 import com.sivalabs.bookmarks.jooq.Keys;
+import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.BookmarksRecord;
 
 import java.time.LocalDateTime;
@@ -16,6 +16,7 @@ import java.util.function.Function;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function6;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -40,7 +41,7 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>BOOKMARKS</code>
+     * The reference instance of <code>public.bookmarks</code>
      */
     public static final Bookmarks BOOKMARKS = new Bookmarks();
 
@@ -53,34 +54,34 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
     }
 
     /**
-     * The column <code>BOOKMARKS.ID</code>.
+     * The column <code>public.bookmarks.id</code>.
      */
-    public final TableField<BookmarksRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).defaultValue(DSL.field("NEXT VALUE FOR \"PUBLIC\".\"BOOKMARK_ID_SEQ\"", SQLDataType.BIGINT)), this, "");
+    public final TableField<BookmarksRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>BOOKMARKS.URL</code>.
+     * The column <code>public.bookmarks.url</code>.
      */
-    public final TableField<BookmarksRecord, String> URL = createField(DSL.name("URL"), SQLDataType.VARCHAR(1024).nullable(false), this, "");
+    public final TableField<BookmarksRecord, String> URL = createField(DSL.name("url"), SQLDataType.VARCHAR(1024).nullable(false), this, "");
 
     /**
-     * The column <code>BOOKMARKS.TITLE</code>.
+     * The column <code>public.bookmarks.title</code>.
      */
-    public final TableField<BookmarksRecord, String> TITLE = createField(DSL.name("TITLE"), SQLDataType.VARCHAR(1024), this, "");
+    public final TableField<BookmarksRecord, String> TITLE = createField(DSL.name("title"), SQLDataType.VARCHAR(1024), this, "");
 
     /**
-     * The column <code>BOOKMARKS.CREATED_BY</code>.
+     * The column <code>public.bookmarks.created_by</code>.
      */
-    public final TableField<BookmarksRecord, Long> CREATED_BY = createField(DSL.name("CREATED_BY"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<BookmarksRecord, Long> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>BOOKMARKS.CREATED_AT</code>.
+     * The column <code>public.bookmarks.created_at</code>.
      */
-    public final TableField<BookmarksRecord, LocalDateTime> CREATED_AT = createField(DSL.name("CREATED_AT"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<BookmarksRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
-     * The column <code>BOOKMARKS.UPDATED_AT</code>.
+     * The column <code>public.bookmarks.updated_at</code>.
      */
-    public final TableField<BookmarksRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("UPDATED_AT"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<BookmarksRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private Bookmarks(Name alias, Table<BookmarksRecord> aliased) {
         this(alias, aliased, null);
@@ -91,24 +92,24 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
     }
 
     /**
-     * Create an aliased <code>BOOKMARKS</code> table reference
+     * Create an aliased <code>public.bookmarks</code> table reference
      */
     public Bookmarks(String alias) {
         this(DSL.name(alias), BOOKMARKS);
     }
 
     /**
-     * Create an aliased <code>BOOKMARKS</code> table reference
+     * Create an aliased <code>public.bookmarks</code> table reference
      */
     public Bookmarks(Name alias) {
         this(alias, BOOKMARKS);
     }
 
     /**
-     * Create a <code>BOOKMARKS</code> table reference
+     * Create a <code>public.bookmarks</code> table reference
      */
     public Bookmarks() {
-        this(DSL.name("BOOKMARKS"), null);
+        this(DSL.name("bookmarks"), null);
     }
 
     public <O extends Record> Bookmarks(Table<O> child, ForeignKey<O, BookmarksRecord> key) {
@@ -117,27 +118,32 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+        return aliased() ? null : Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<BookmarksRecord, Long> getIdentity() {
+        return (Identity<BookmarksRecord, Long>) super.getIdentity();
     }
 
     @Override
     public UniqueKey<BookmarksRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_1F;
+        return Keys.BOOKMARKS_PKEY;
     }
 
     @Override
     public List<ForeignKey<BookmarksRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.CONSTRAINT_1);
+        return Arrays.asList(Keys.BOOKMARKS__BOOKMARKS_CREATED_BY_FKEY);
     }
 
     private transient Users _users;
 
     /**
-     * Get the implicit join path to the <code>PUBLIC.USERS</code> table.
+     * Get the implicit join path to the <code>public.users</code> table.
      */
     public Users users() {
         if (_users == null)
-            _users = new Users(this, Keys.CONSTRAINT_1);
+            _users = new Users(this, Keys.BOOKMARKS__BOOKMARKS_CREATED_BY_FKEY);
 
         return _users;
     }

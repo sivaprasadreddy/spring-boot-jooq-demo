@@ -41,7 +41,7 @@ public class TagsRepository extends DAOImpl<TagsRecord, JooqTags, Long> {
     }
 
     /**
-     * Fetch records that have <code>ID BETWEEN lowerInclusive AND
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqTags> fetchRangeOfId(Long lowerInclusive, Long upperInclusive) {
@@ -49,28 +49,28 @@ public class TagsRepository extends DAOImpl<TagsRecord, JooqTags, Long> {
     }
 
     /**
-     * Fetch records that have <code>ID IN (values)</code>
+     * Fetch records that have <code>id IN (values)</code>
      */
     public List<JooqTags> fetchById(Long... values) {
         return fetch(Tags.TAGS.ID, values);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public JooqTags fetchOneById(Long value) {
         return fetchOne(Tags.TAGS.ID, value);
     }
 
     /**
-     * Fetch a unique record that has <code>ID = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
     public Optional<JooqTags> fetchOptionalById(Long value) {
         return fetchOptional(Tags.TAGS.ID, value);
     }
 
     /**
-     * Fetch records that have <code>NAME BETWEEN lowerInclusive AND
+     * Fetch records that have <code>name BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
     public List<JooqTags> fetchRangeOfName(String lowerInclusive, String upperInclusive) {
@@ -78,21 +78,21 @@ public class TagsRepository extends DAOImpl<TagsRecord, JooqTags, Long> {
     }
 
     /**
-     * Fetch records that have <code>NAME IN (values)</code>
+     * Fetch records that have <code>name IN (values)</code>
      */
     public List<JooqTags> fetchByName(String... values) {
         return fetch(Tags.TAGS.NAME, values);
     }
 
     /**
-     * Fetch a unique record that has <code>NAME = value</code>
+     * Fetch a unique record that has <code>name = value</code>
      */
     public JooqTags fetchOneByName(String value) {
         return fetchOne(Tags.TAGS.NAME, value);
     }
 
     /**
-     * Fetch a unique record that has <code>NAME = value</code>
+     * Fetch a unique record that has <code>name = value</code>
      */
     public Optional<JooqTags> fetchOptionalByName(String value) {
         return fetchOptional(Tags.TAGS.NAME, value);

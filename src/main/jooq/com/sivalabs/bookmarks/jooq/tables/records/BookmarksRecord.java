@@ -25,84 +25,84 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>BOOKMARKS.ID</code>.
+     * Setter for <code>public.bookmarks.id</code>.
      */
     public void setId(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.ID</code>.
+     * Getter for <code>public.bookmarks.id</code>.
      */
     public Long getId() {
         return (Long) get(0);
     }
 
     /**
-     * Setter for <code>BOOKMARKS.URL</code>.
+     * Setter for <code>public.bookmarks.url</code>.
      */
     public void setUrl(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.URL</code>.
+     * Getter for <code>public.bookmarks.url</code>.
      */
     public String getUrl() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>BOOKMARKS.TITLE</code>.
+     * Setter for <code>public.bookmarks.title</code>.
      */
     public void setTitle(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.TITLE</code>.
+     * Getter for <code>public.bookmarks.title</code>.
      */
     public String getTitle() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>BOOKMARKS.CREATED_BY</code>.
+     * Setter for <code>public.bookmarks.created_by</code>.
      */
     public void setCreatedBy(Long value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.CREATED_BY</code>.
+     * Getter for <code>public.bookmarks.created_by</code>.
      */
     public Long getCreatedBy() {
         return (Long) get(3);
     }
 
     /**
-     * Setter for <code>BOOKMARKS.CREATED_AT</code>.
+     * Setter for <code>public.bookmarks.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.CREATED_AT</code>.
+     * Getter for <code>public.bookmarks.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>BOOKMARKS.UPDATED_AT</code>.
+     * Setter for <code>public.bookmarks.updated_at</code>.
      */
     public void setUpdatedAt(LocalDateTime value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>BOOKMARKS.UPDATED_AT</code>.
+     * Getter for <code>public.bookmarks.updated_at</code>.
      */
     public LocalDateTime getUpdatedAt() {
         return (LocalDateTime) get(5);
