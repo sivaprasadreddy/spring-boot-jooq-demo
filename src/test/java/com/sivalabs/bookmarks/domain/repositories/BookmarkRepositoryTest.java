@@ -1,51 +1,55 @@
-package com.sivalabs.bookmarks.services;
+package com.sivalabs.bookmarks.domain.repositories;
 
+import com.sivalabs.bookmarks.common.PostgresDatabaseContainerInitializer;
 import com.sivalabs.bookmarks.domain.models.Bookmark;
 import com.sivalabs.bookmarks.domain.models.Tag;
 import com.sivalabs.bookmarks.domain.models.User;
-import com.sivalabs.bookmarks.domain.services.BookmarkService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-class BookmarkServiceTest {
+@JooqTest
+@Import(BookmarkRepository.class)
+@ContextConfiguration(initializers = {PostgresDatabaseContainerInitializer.class})
+public class BookmarkRepositoryTest {
 
     @Autowired
-    BookmarkService bookmarkService;
+    BookmarkRepository bookmarkRepository;
 
     @Test
     void shouldGetAllBookmarks() {
-        List<Bookmark> allBookmarks = bookmarkService.getAllBookmarks();
+        List<Bookmark> allBookmarks = bookmarkRepository.findAll();
         assertThat(allBookmarks).isNotEmpty();
     }
 
     @Test
     void shouldSearchBookmarks() {
-        List<Bookmark> bookmarks = bookmarkService.searchBookmarks("va");
+        List<Bookmark> bookmarks = bookmarkRepository.searchBookmarksByTitle("va");
         assertThat(bookmarks).isNotEmpty();
     }
 
     @Test
     void shouldGetBookmarksByTag() {
-        List<Bookmark> bookmarks = bookmarkService.getBookmarksByTag("java");
+        List<Bookmark> bookmarks = bookmarkRepository.fetchBookmarksByTag("java");
         assertThat(bookmarks).isNotEmpty();
     }
 
     @Test
     void shouldGetBookmarkById() {
-        Bookmark bookmark = bookmarkService.getBookmarkById(1L).orElse(null);
+        Bookmark bookmark = bookmarkRepository.findById(1L).orElse(null);
         System.out.println(bookmark);
         assertThat(bookmark).isNotNull();
     }
 
     @Test
     void shouldGetAllTags() {
-        List<Tag> tags = bookmarkService.findAllTags();
+        List<Tag> tags = bookmarkRepository.findAllTags();
         assertThat(tags).isNotEmpty();
     }
 
@@ -56,7 +60,7 @@ class BookmarkServiceTest {
         Tag tag2 = new Tag(1L,"spring-cloud");
         Bookmark bookmark = new Bookmark(null, "ss", "https://ss.com", user, List.of(tag1, tag2));
 
-        Bookmark savedBookmark = bookmarkService.createBookmark(bookmark);
+        Bookmark savedBookmark = bookmarkRepository.save(bookmark);
         assertThat(savedBookmark).isNotNull();
         assertThat(savedBookmark.id()).isNotNull();
     }

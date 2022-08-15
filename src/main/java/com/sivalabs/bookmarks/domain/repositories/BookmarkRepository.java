@@ -37,8 +37,8 @@ public class BookmarkRepository {
     public Optional<Bookmark> findById(Long id) {
         Bookmark bookmark = getCommonRootSpec()
                 .where(BOOKMARKS.ID.eq(id))
-                .fetchSingle(mapping(Bookmark::new));
-        return Optional.of(bookmark);
+                .fetchOne(mapping(Bookmark::new));
+        return Optional.ofNullable(bookmark);
     }
 
     public List<Bookmark> searchBookmarksByTitle(String query) {
@@ -63,7 +63,7 @@ public class BookmarkRepository {
                 .set(BOOKMARKS.CREATED_BY, bookmark.createdBy().id())
                 .set(BOOKMARKS.CREATED_AT, LocalDateTime.now())
                 .returning(BOOKMARKS.ID)
-                .fetchOne();
+                .fetchSingle();
         this.saveTags(bookmark.tags());
         for (Tag tag : bookmark.tags()) {
             dsl.insertInto(BOOKMARK_TAG)
@@ -109,8 +109,8 @@ public class BookmarkRepository {
     public Optional<Tag> getTagByName(String tagName) {
         var tag = dsl.selectFrom(TAGS)
                 .where(TAGS.NAME.equalIgnoreCase(tagName))
-                .fetchSingle(mapping(Tag::new));
-        return Optional.of(tag);
+                .fetchOne(mapping(Tag::new));
+        return Optional.ofNullable(tag);
     }
 
     private SelectJoinStep<Record5<Long, String, String, User, List<Tag>>> getCommonRootSpec() {
