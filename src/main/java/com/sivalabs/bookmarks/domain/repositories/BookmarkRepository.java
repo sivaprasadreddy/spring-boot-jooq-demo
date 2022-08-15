@@ -81,6 +81,14 @@ public class BookmarkRepository {
     public List<Tag> saveTags(List<Tag> tags) {
         List<Tag> tagsResult = new ArrayList<>();
         for (Tag tag : tags) {
+            /*
+            dsl.mergeInto(TAGS)
+                    .using(selectOne())
+                    .on(TAGS.NAME.eq(tag.name()))
+                    .whenNotMatchedThenInsert(TAGS.NAME)
+                    .values(tag.name())
+                    .execute();
+            */
             Optional<Tag> tagByName = getTagByName(tag.name());
             if(tagByName.isPresent()) {
                 tagsResult.add(tagByName.get());
