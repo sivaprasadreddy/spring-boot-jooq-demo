@@ -2,6 +2,6 @@
 
 ```shell
 $ docker-compose up -d
-$ ./mvnw verify
-$ ./mvnw spring-boot:run
+$ ./gradlew build
+$ ./gradlew bootRun
 ```

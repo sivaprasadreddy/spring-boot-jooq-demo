@@ -5,7 +5,6 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Users;
-import com.sivalabs.bookmarks.jooq.tables.pojos.JooqUsers;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +26,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.id</code>.
      */
-    public void setId(Long value) {
+    public UsersRecord setId(Long value) {
         set(0, value);
+        return this;
     }
 
     /**
@@ -41,8 +41,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.name</code>.
      */
-    public void setName(String value) {
+    public UsersRecord setName(String value) {
         set(1, value);
+        return this;
     }
 
     /**
@@ -55,8 +56,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.email</code>.
      */
-    public void setEmail(String value) {
+    public UsersRecord setEmail(String value) {
         set(2, value);
+        return this;
     }
 
     /**
@@ -69,8 +71,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.password</code>.
      */
-    public void setPassword(String value) {
+    public UsersRecord setPassword(String value) {
         set(3, value);
+        return this;
     }
 
     /**
@@ -83,8 +86,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.addr_id</code>.
      */
-    public void setAddrId(Long value) {
+    public UsersRecord setAddrId(Long value) {
         set(4, value);
+        return this;
     }
 
     /**
@@ -97,8 +101,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.created_at</code>.
      */
-    public void setCreatedAt(LocalDateTime value) {
+    public UsersRecord setCreatedAt(LocalDateTime value) {
         set(5, value);
+        return this;
     }
 
     /**
@@ -111,8 +116,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>public.users.updated_at</code>.
      */
-    public void setUpdatedAt(LocalDateTime value) {
+    public UsersRecord setUpdatedAt(LocalDateTime value) {
         set(6, value);
+        return this;
     }
 
     /**
@@ -333,7 +339,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Create a detached, initialised UsersRecord
      */
-    public UsersRecord(JooqUsers value) {
+    public UsersRecord(com.sivalabs.bookmarks.jooq.tables.pojos.Users value) {
         super(Users.USERS);
 
         if (value != null) {

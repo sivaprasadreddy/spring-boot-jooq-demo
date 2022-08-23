@@ -5,7 +5,6 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Addresses;
-import com.sivalabs.bookmarks.jooq.tables.pojos.JooqAddresses;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -25,8 +24,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.id</code>.
      */
-    public void setId(Long value) {
+    public AddressesRecord setId(Long value) {
         set(0, value);
+        return this;
     }
 
     /**
@@ -39,8 +39,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.street</code>.
      */
-    public void setStreet(String value) {
+    public AddressesRecord setStreet(String value) {
         set(1, value);
+        return this;
     }
 
     /**
@@ -53,8 +54,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.city</code>.
      */
-    public void setCity(String value) {
+    public AddressesRecord setCity(String value) {
         set(2, value);
+        return this;
     }
 
     /**
@@ -67,8 +69,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.state</code>.
      */
-    public void setState(String value) {
+    public AddressesRecord setState(String value) {
         set(3, value);
+        return this;
     }
 
     /**
@@ -81,8 +84,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.zip</code>.
      */
-    public void setZip(String value) {
+    public AddressesRecord setZip(String value) {
         set(4, value);
+        return this;
     }
 
     /**
@@ -95,8 +99,9 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Setter for <code>public.addresses.country</code>.
      */
-    public void setCountry(String value) {
+    public AddressesRecord setCountry(String value) {
         set(5, value);
+        return this;
     }
 
     /**
@@ -294,7 +299,7 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
     /**
      * Create a detached, initialised AddressesRecord
      */
-    public AddressesRecord(JooqAddresses value) {
+    public AddressesRecord(com.sivalabs.bookmarks.jooq.tables.pojos.Addresses value) {
         super(Addresses.ADDRESSES);
 
         if (value != null) {

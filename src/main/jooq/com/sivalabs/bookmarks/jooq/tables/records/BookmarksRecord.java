@@ -5,7 +5,6 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
-import com.sivalabs.bookmarks.jooq.tables.pojos.JooqBookmarks;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +26,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.id</code>.
      */
-    public void setId(Long value) {
+    public BookmarksRecord setId(Long value) {
         set(0, value);
+        return this;
     }
 
     /**
@@ -41,8 +41,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.url</code>.
      */
-    public void setUrl(String value) {
+    public BookmarksRecord setUrl(String value) {
         set(1, value);
+        return this;
     }
 
     /**
@@ -55,8 +56,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.title</code>.
      */
-    public void setTitle(String value) {
+    public BookmarksRecord setTitle(String value) {
         set(2, value);
+        return this;
     }
 
     /**
@@ -69,8 +71,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.created_by</code>.
      */
-    public void setCreatedBy(Long value) {
+    public BookmarksRecord setCreatedBy(Long value) {
         set(3, value);
+        return this;
     }
 
     /**
@@ -83,8 +86,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.created_at</code>.
      */
-    public void setCreatedAt(LocalDateTime value) {
+    public BookmarksRecord setCreatedAt(LocalDateTime value) {
         set(4, value);
+        return this;
     }
 
     /**
@@ -97,8 +101,9 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Setter for <code>public.bookmarks.updated_at</code>.
      */
-    public void setUpdatedAt(LocalDateTime value) {
+    public BookmarksRecord setUpdatedAt(LocalDateTime value) {
         set(5, value);
+        return this;
     }
 
     /**
@@ -296,7 +301,7 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
     /**
      * Create a detached, initialised BookmarksRecord
      */
-    public BookmarksRecord(JooqBookmarks value) {
+    public BookmarksRecord(com.sivalabs.bookmarks.jooq.tables.pojos.Bookmarks value) {
         super(Bookmarks.BOOKMARKS);
 
         if (value != null) {

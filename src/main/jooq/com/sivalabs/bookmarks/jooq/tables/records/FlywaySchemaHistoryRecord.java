@@ -5,7 +5,6 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.FlywaySchemaHistory;
-import com.sivalabs.bookmarks.jooq.tables.pojos.JooqFlywaySchemaHistory;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +26,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.installed_rank</code>.
      */
-    public void setInstalledRank(Integer value) {
+    public FlywaySchemaHistoryRecord setInstalledRank(Integer value) {
         set(0, value);
+        return this;
     }
 
     /**
@@ -41,8 +41,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.version</code>.
      */
-    public void setVersion(String value) {
+    public FlywaySchemaHistoryRecord setVersion(String value) {
         set(1, value);
+        return this;
     }
 
     /**
@@ -55,8 +56,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.description</code>.
      */
-    public void setDescription(String value) {
+    public FlywaySchemaHistoryRecord setDescription(String value) {
         set(2, value);
+        return this;
     }
 
     /**
@@ -69,8 +71,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.type</code>.
      */
-    public void setType(String value) {
+    public FlywaySchemaHistoryRecord setType(String value) {
         set(3, value);
+        return this;
     }
 
     /**
@@ -83,8 +86,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.script</code>.
      */
-    public void setScript(String value) {
+    public FlywaySchemaHistoryRecord setScript(String value) {
         set(4, value);
+        return this;
     }
 
     /**
@@ -97,8 +101,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.checksum</code>.
      */
-    public void setChecksum(Integer value) {
+    public FlywaySchemaHistoryRecord setChecksum(Integer value) {
         set(5, value);
+        return this;
     }
 
     /**
@@ -111,8 +116,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.installed_by</code>.
      */
-    public void setInstalledBy(String value) {
+    public FlywaySchemaHistoryRecord setInstalledBy(String value) {
         set(6, value);
+        return this;
     }
 
     /**
@@ -125,8 +131,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.installed_on</code>.
      */
-    public void setInstalledOn(LocalDateTime value) {
+    public FlywaySchemaHistoryRecord setInstalledOn(LocalDateTime value) {
         set(7, value);
+        return this;
     }
 
     /**
@@ -139,8 +146,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.execution_time</code>.
      */
-    public void setExecutionTime(Integer value) {
+    public FlywaySchemaHistoryRecord setExecutionTime(Integer value) {
         set(8, value);
+        return this;
     }
 
     /**
@@ -153,8 +161,9 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Setter for <code>public.flyway_schema_history.success</code>.
      */
-    public void setSuccess(Boolean value) {
+    public FlywaySchemaHistoryRecord setSuccess(Boolean value) {
         set(9, value);
+        return this;
     }
 
     /**
@@ -444,7 +453,7 @@ public class FlywaySchemaHistoryRecord extends UpdatableRecordImpl<FlywaySchemaH
     /**
      * Create a detached, initialised FlywaySchemaHistoryRecord
      */
-    public FlywaySchemaHistoryRecord(JooqFlywaySchemaHistory value) {
+    public FlywaySchemaHistoryRecord(com.sivalabs.bookmarks.jooq.tables.pojos.FlywaySchemaHistory value) {
         super(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY);
 
         if (value != null) {
