@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
-          cache: 'maven'
+          cache: 'gradle'
 
       - name: Build with Gradle
         run: ./gradlew build
