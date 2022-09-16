@@ -7,13 +7,11 @@ package com.sivalabs.bookmarks.jooq;
 import com.sivalabs.bookmarks.jooq.tables.Addresses;
 import com.sivalabs.bookmarks.jooq.tables.BookmarkTag;
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
-import com.sivalabs.bookmarks.jooq.tables.FlywaySchemaHistory;
 import com.sivalabs.bookmarks.jooq.tables.Tags;
 import com.sivalabs.bookmarks.jooq.tables.Users;
 import com.sivalabs.bookmarks.jooq.tables.records.AddressesRecord;
 import com.sivalabs.bookmarks.jooq.tables.records.BookmarkTagRecord;
 import com.sivalabs.bookmarks.jooq.tables.records.BookmarksRecord;
-import com.sivalabs.bookmarks.jooq.tables.records.FlywaySchemaHistoryRecord;
 import com.sivalabs.bookmarks.jooq.tables.records.TagsRecord;
 import com.sivalabs.bookmarks.jooq.tables.records.UsersRecord;
 
@@ -37,7 +35,6 @@ public class Keys {
 
     public static final UniqueKey<AddressesRecord> ADDRESSES_PKEY = Internal.createUniqueKey(Addresses.ADDRESSES, DSL.name("addresses_pkey"), new TableField[] { Addresses.ADDRESSES.ID }, true);
     public static final UniqueKey<BookmarksRecord> BOOKMARKS_PKEY = Internal.createUniqueKey(Bookmarks.BOOKMARKS, DSL.name("bookmarks_pkey"), new TableField[] { Bookmarks.BOOKMARKS.ID }, true);
-    public static final UniqueKey<FlywaySchemaHistoryRecord> FLYWAY_SCHEMA_HISTORY_PK = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("flyway_schema_history_pk"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
     public static final UniqueKey<TagsRecord> TAG_NAME_UNIQUE = Internal.createUniqueKey(Tags.TAGS, DSL.name("tag_name_unique"), new TableField[] { Tags.TAGS.NAME }, true);
     public static final UniqueKey<TagsRecord> TAGS_PKEY = Internal.createUniqueKey(Tags.TAGS, DSL.name("tags_pkey"), new TableField[] { Tags.TAGS.ID }, true);
     public static final UniqueKey<UsersRecord> USER_EMAIL_UNIQUE = Internal.createUniqueKey(Users.USERS, DSL.name("user_email_unique"), new TableField[] { Users.USERS.EMAIL }, true);

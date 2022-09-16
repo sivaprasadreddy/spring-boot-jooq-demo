@@ -203,11 +203,17 @@
                                 <generate>
                                     <pojos>true</pojos>
                                     <daos>true</daos>
+                                    <springAnnotations>true</springAnnotations>
                                     <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
                                     <javaTimeTypes>true</javaTimeTypes>
+                                    <validationAnnotations>false</validationAnnotations>
                                 </generate>
                                 <database>
                                     <inputSchema>public</inputSchema>
+                                    <includes>.*</includes>
+                                    <excludes>
+                                        flyway_schema_history
+                                    </excludes>
                                 </database>
                                 <!-- Rename the generated POJOs and DAOs classes -->
                                 <strategy>
