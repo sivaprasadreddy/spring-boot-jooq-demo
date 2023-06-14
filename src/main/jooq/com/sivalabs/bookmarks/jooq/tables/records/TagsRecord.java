@@ -141,6 +141,7 @@ public class TagsRecord extends UpdatableRecordImpl<TagsRecord> implements Recor
 
         setId(id);
         setName(name);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -152,6 +153,7 @@ public class TagsRecord extends UpdatableRecordImpl<TagsRecord> implements Recor
         if (value != null) {
             setId(value.getId());
             setName(value.getName());
+            resetChangedOnNotNull();
         }
     }
 }

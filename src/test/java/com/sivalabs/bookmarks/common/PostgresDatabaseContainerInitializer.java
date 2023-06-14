@@ -8,10 +8,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public class PostgresDatabaseContainerInitializer
         implements ApplicationContextInitializer<ConfigurableApplicationContext> {
     private static final PostgreSQLContainer<?> sqlContainer =
-            new PostgreSQLContainer<>("postgres:14-alpine")
-                    .withDatabaseName("integration-tests-db")
-                    .withUsername("sa")
-                    .withPassword("sa");
+            new PostgreSQLContainer<>("postgres:15-alpine");
 
     static {
         sqlContainer.start();

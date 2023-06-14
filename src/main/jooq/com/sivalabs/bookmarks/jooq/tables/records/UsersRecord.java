@@ -328,6 +328,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
         setAddrId(addrId);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -344,6 +345,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
             setAddrId(value.getAddrId());
             setCreatedAt(value.getCreatedAt());
             setUpdatedAt(value.getUpdatedAt());
+            resetChangedOnNotNull();
         }
     }
 }
