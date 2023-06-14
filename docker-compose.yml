@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   postgresdb:
-    image: postgres:14-alpine
+    image: postgres:15-alpine
     container_name:   postgresdb
     environment:
       - POSTGRES_USER=postgres
