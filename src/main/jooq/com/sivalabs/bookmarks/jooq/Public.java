@@ -7,7 +7,6 @@ package com.sivalabs.bookmarks.jooq;
 import com.sivalabs.bookmarks.jooq.tables.Addresses;
 import com.sivalabs.bookmarks.jooq.tables.BookmarkTag;
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
-import com.sivalabs.bookmarks.jooq.tables.FlywaySchemaHistory;
 import com.sivalabs.bookmarks.jooq.tables.Tags;
 import com.sivalabs.bookmarks.jooq.tables.Users;
 
@@ -49,11 +48,6 @@ public class Public extends SchemaImpl {
     public final Bookmarks BOOKMARKS = Bookmarks.BOOKMARKS;
 
     /**
-     * The table <code>public.flyway_schema_history</code>.
-     */
-    public final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
-
-    /**
      * The table <code>public.tags</code>.
      */
     public final Tags TAGS = Tags.TAGS;
@@ -92,7 +86,6 @@ public class Public extends SchemaImpl {
             Addresses.ADDRESSES,
             BookmarkTag.BOOKMARK_TAG,
             Bookmarks.BOOKMARKS,
-            FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
             Tags.TAGS,
             Users.USERS
         );

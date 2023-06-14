@@ -296,6 +296,7 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
         setCreatedBy(createdBy);
         setCreatedAt(createdAt);
         setUpdatedAt(updatedAt);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -311,6 +312,7 @@ public class BookmarksRecord extends UpdatableRecordImpl<BookmarksRecord> implem
             setCreatedBy(value.getCreatedBy());
             setCreatedAt(value.getCreatedAt());
             setUpdatedAt(value.getUpdatedAt());
+            resetChangedOnNotNull();
         }
     }
 }

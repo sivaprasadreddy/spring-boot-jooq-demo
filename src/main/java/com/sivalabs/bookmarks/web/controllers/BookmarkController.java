@@ -1,6 +1,6 @@
 package com.sivalabs.bookmarks.web.controllers;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import com.sivalabs.bookmarks.domain.models.Bookmark;
 import com.sivalabs.bookmarks.domain.models.Tag;

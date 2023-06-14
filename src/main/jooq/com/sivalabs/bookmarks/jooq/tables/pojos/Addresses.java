@@ -90,6 +90,67 @@ public class Addresses implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Addresses other = (Addresses) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
+        if (this.street == null) {
+            if (other.street != null)
+                return false;
+        }
+        else if (!this.street.equals(other.street))
+            return false;
+        if (this.city == null) {
+            if (other.city != null)
+                return false;
+        }
+        else if (!this.city.equals(other.city))
+            return false;
+        if (this.state == null) {
+            if (other.state != null)
+                return false;
+        }
+        else if (!this.state.equals(other.state))
+            return false;
+        if (this.zip == null) {
+            if (other.zip != null)
+                return false;
+        }
+        else if (!this.zip.equals(other.zip))
+            return false;
+        if (this.country == null) {
+            if (other.country != null)
+                return false;
+        }
+        else if (!this.country.equals(other.country))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.street == null) ? 0 : this.street.hashCode());
+        result = prime * result + ((this.city == null) ? 0 : this.city.hashCode());
+        result = prime * result + ((this.state == null) ? 0 : this.state.hashCode());
+        result = prime * result + ((this.zip == null) ? 0 : this.zip.hashCode());
+        result = prime * result + ((this.country == null) ? 0 : this.country.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Addresses (");
 

@@ -294,6 +294,7 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
         setState(state);
         setZip(zip);
         setCountry(country);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -309,6 +310,7 @@ public class AddressesRecord extends UpdatableRecordImpl<AddressesRecord> implem
             setState(value.getState());
             setZip(value.getZip());
             setCountry(value.getCountry());
+            resetChangedOnNotNull();
         }
     }
 }

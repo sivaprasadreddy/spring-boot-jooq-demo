@@ -132,6 +132,7 @@ public class BookmarkTagRecord extends TableRecordImpl<BookmarkTagRecord> implem
 
         setBookmarkId(bookmarkId);
         setTagId(tagId);
+        resetChangedOnNotNull();
     }
 
     /**
@@ -143,6 +144,7 @@ public class BookmarkTagRecord extends TableRecordImpl<BookmarkTagRecord> implem
         if (value != null) {
             setBookmarkId(value.getBookmarkId());
             setTagId(value.getTagId());
+            resetChangedOnNotNull();
         }
     }
 }

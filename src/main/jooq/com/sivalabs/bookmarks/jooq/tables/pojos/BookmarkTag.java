@@ -46,6 +46,39 @@ public class BookmarkTag implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final BookmarkTag other = (BookmarkTag) obj;
+        if (this.bookmarkId == null) {
+            if (other.bookmarkId != null)
+                return false;
+        }
+        else if (!this.bookmarkId.equals(other.bookmarkId))
+            return false;
+        if (this.tagId == null) {
+            if (other.tagId != null)
+                return false;
+        }
+        else if (!this.tagId.equals(other.tagId))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.bookmarkId == null) ? 0 : this.bookmarkId.hashCode());
+        result = prime * result + ((this.tagId == null) ? 0 : this.tagId.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("BookmarkTag (");
 

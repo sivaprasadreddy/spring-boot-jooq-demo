@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.testcontainers:postgresql:1.17.3'
+        classpath 'org.testcontainers:postgresql:1.18.3'
         classpath 'org.postgresql:postgresql:42.3.6'
     }
 }
@@ -15,10 +15,10 @@ buildscript {
 plugins {
     id 'java'
     id 'jacoco'
-    id 'org.springframework.boot' version '2.7.3'
-    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
-    id 'nu.studer.jooq' version '7.1.1'
-    id 'org.flywaydb.flyway' version '8.5.13'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'nu.studer.jooq' version '8.2'
+    id 'org.flywaydb.flyway' version '9.8.1'
 }
 
 group = 'com.sivalabs'
@@ -42,10 +42,10 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
 }
 
-def jooqVersion = "3.17.2"
+def jooqVersion = "3.18.4"
 
 ext {
-    set('testcontainersVersion', "1.17.3")
+    set('testcontainersVersion', "1.18.3")
     set('jooq.version', jooqVersion)
 }
 
@@ -68,16 +68,10 @@ dependencies {
     testImplementation "org.testcontainers:junit-jupiter"
     testImplementation "org.testcontainers:postgresql"
 
-    flywayMigration 'org.postgresql:postgresql:42.3.6'
-    jooqGenerator 'org.postgresql:postgresql:42.3.6'
+    flywayMigration 'org.postgresql:postgresql:42.3.8'
+    jooqGenerator 'org.postgresql:postgresql:42.3.8'
     jooqGenerator 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
-    jooqGenerator 'org.testcontainers:postgresql:1.17.3'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-    }
+    jooqGenerator 'org.testcontainers:postgresql:1.18.3'
 }
 
 test {
@@ -131,6 +125,8 @@ jooq {
                     database {
                         name = 'org.jooq.meta.postgres.PostgresDatabase'
                         inputSchema = 'public'
+                        includes = '.*'
+                        excludes = 'flyway_schema_history'
                     }
                     generate {
                         deprecated = false
