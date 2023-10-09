@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sivalabs</groupId>
@@ -17,7 +17,7 @@
     <description>spring-boot-jooq-demo</description>
     <properties>
         <java.version>17</java.version>
-        <testcontainers.version>1.18.3</testcontainers.version>
+        <testcontainers.version>1.19.1</testcontainers.version>
         <db.username>postgres</db.username>
         <db.password>postgres</db.password>
     </properties>
@@ -79,17 +79,7 @@
             <artifactId>postgresql</artifactId>
         </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-bom</artifactId>
-                <version>${testcontainers.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -117,7 +107,7 @@
                         </goals>
                         <configuration>
                             <source>
-                                db = new org.testcontainers.containers.PostgreSQLContainer("postgres:14-alpine")
+                                db = new org.testcontainers.containers.PostgreSQLContainer("postgres:15-alpine")
                                         .withUsername("${db.username}")
                                         .withDatabaseName("postgres")
                                         .withPassword("${db.password}");
@@ -242,13 +232,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
+                <!--<configuration>
                     <systemPropertyVariables>
                         <db.url>${db.url}</db.url>
                         <db.username>${db.username}</db.username>
                         <db.password>${db.password}</db.password>
                     </systemPropertyVariables>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
