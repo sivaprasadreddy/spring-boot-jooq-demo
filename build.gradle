@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.testcontainers:postgresql:1.18.3'
+        classpath 'org.testcontainers:postgresql:1.19.1'
         classpath 'org.postgresql:postgresql:42.3.6'
     }
 }
@@ -15,8 +15,8 @@ buildscript {
 plugins {
     id 'java'
     id 'jacoco'
-    id 'org.springframework.boot' version '3.1.0'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.3'
     id 'nu.studer.jooq' version '8.2'
     id 'org.flywaydb.flyway' version '9.8.1'
 }
@@ -45,7 +45,7 @@ repositories {
 def jooqVersion = "3.18.4"
 
 ext {
-    set('testcontainersVersion', "1.18.3")
+    set('testcontainers.version', "1.19.1")
     set('jooq.version', jooqVersion)
 }
 
@@ -68,13 +68,13 @@ dependencies {
     testImplementation "org.testcontainers:junit-jupiter"
     testImplementation "org.testcontainers:postgresql"
 
-    flywayMigration 'org.postgresql:postgresql:42.3.8'
-    jooqGenerator 'org.postgresql:postgresql:42.3.8'
-    jooqGenerator 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
-    jooqGenerator 'org.testcontainers:postgresql:1.18.3'
+    flywayMigration 'org.postgresql:postgresql'
+    jooqGenerator 'org.postgresql:postgresql'
+    jooqGenerator 'jakarta.xml.bind:jakarta.xml.bind-api'
+    jooqGenerator 'org.testcontainers:postgresql'
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
     testLogging {
         events = ["PASSED", "FAILED", "SKIPPED"]
@@ -144,10 +144,6 @@ jooq {
     }
 }
 
-// configure jOOQ task such that it only executes when something has changed that potentially affects the generated JOOQ sources
-// - the jOOQ configuration has changed (Jdbc, Generator, Strategy, etc.)
-// - the classpath used to execute the jOOQ generation tool has changed (jOOQ library, database driver, strategy classes, etc.)
-// - the schema files from which the schema is generated and which is used by jOOQ to generate the sources have changed (scripts added, modified, etc.)
 tasks.named('generateJooq').configure {
     // ensure database schema has been prepared by Flyway before generating the jOOQ sources
     dependsOn tasks.named('postgresContainer')
