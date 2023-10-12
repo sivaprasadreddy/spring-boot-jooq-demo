@@ -1,4 +1,5 @@
 # SpringBoot JOOQ Demo
+This is a sample project for [Spring Boot + jOOQ Tutorial Series](https://sivalabs.in/spring-boot-jooq-tutorial-getting-started)
 
 ```shell
 # Run tests
