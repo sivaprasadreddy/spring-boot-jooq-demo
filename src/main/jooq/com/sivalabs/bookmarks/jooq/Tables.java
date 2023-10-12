@@ -4,10 +4,10 @@
 package com.sivalabs.bookmarks.jooq;
 
 
-import com.sivalabs.bookmarks.jooq.tables.Addresses;
 import com.sivalabs.bookmarks.jooq.tables.BookmarkTag;
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
 import com.sivalabs.bookmarks.jooq.tables.Tags;
+import com.sivalabs.bookmarks.jooq.tables.UserPreferences;
 import com.sivalabs.bookmarks.jooq.tables.Users;
 
 
@@ -16,11 +16,6 @@ import com.sivalabs.bookmarks.jooq.tables.Users;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
-
-    /**
-     * The table <code>public.addresses</code>.
-     */
-    public static final Addresses ADDRESSES = Addresses.ADDRESSES;
 
     /**
      * The table <code>public.bookmark_tag</code>.
@@ -36,6 +31,11 @@ public class Tables {
      * The table <code>public.tags</code>.
      */
     public static final Tags TAGS = Tags.TAGS;
+
+    /**
+     * The table <code>public.user_preferences</code>.
+     */
+    public static final UserPreferences USER_PREFERENCES = UserPreferences.USER_PREFERENCES;
 
     /**
      * The table <code>public.users</code>.

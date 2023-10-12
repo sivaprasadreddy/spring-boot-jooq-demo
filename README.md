@@ -1,7 +1,13 @@
 # SpringBoot JOOQ Demo
 
 ```shell
-$ docker-compose up -d
+# Run tests
 $ ./mvnw verify
-$ ./mvnw spring-boot:run
+
+# Run application locally
+$ ./mvnw spring-boot:test-run
 ```
+
+## Sample Database
+
+![Sample Database](jooq-demo-db.png)

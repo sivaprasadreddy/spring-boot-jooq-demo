@@ -4,17 +4,16 @@
 package com.sivalabs.bookmarks.jooq;
 
 
-import com.sivalabs.bookmarks.jooq.tables.Addresses;
 import com.sivalabs.bookmarks.jooq.tables.BookmarkTag;
 import com.sivalabs.bookmarks.jooq.tables.Bookmarks;
 import com.sivalabs.bookmarks.jooq.tables.Tags;
+import com.sivalabs.bookmarks.jooq.tables.UserPreferences;
 import com.sivalabs.bookmarks.jooq.tables.Users;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.jooq.Catalog;
-import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
@@ -33,11 +32,6 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>public.addresses</code>.
-     */
-    public final Addresses ADDRESSES = Addresses.ADDRESSES;
-
-    /**
      * The table <code>public.bookmark_tag</code>.
      */
     public final BookmarkTag BOOKMARK_TAG = BookmarkTag.BOOKMARK_TAG;
@@ -51,6 +45,11 @@ public class Public extends SchemaImpl {
      * The table <code>public.tags</code>.
      */
     public final Tags TAGS = Tags.TAGS;
+
+    /**
+     * The table <code>public.user_preferences</code>.
+     */
+    public final UserPreferences USER_PREFERENCES = UserPreferences.USER_PREFERENCES;
 
     /**
      * The table <code>public.users</code>.
@@ -71,22 +70,12 @@ public class Public extends SchemaImpl {
     }
 
     @Override
-    public final List<Sequence<?>> getSequences() {
-        return Arrays.asList(
-            Sequences.ADDRESS_ID_SEQ,
-            Sequences.BOOKMARK_ID_SEQ,
-            Sequences.TAG_ID_SEQ,
-            Sequences.USER_ID_SEQ
-        );
-    }
-
-    @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Addresses.ADDRESSES,
             BookmarkTag.BOOKMARK_TAG,
             Bookmarks.BOOKMARKS,
             Tags.TAGS,
+            UserPreferences.USER_PREFERENCES,
             Users.USERS
         );
     }

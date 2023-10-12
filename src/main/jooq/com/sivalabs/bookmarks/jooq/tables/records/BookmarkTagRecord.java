@@ -5,7 +5,6 @@ package com.sivalabs.bookmarks.jooq.tables.records;
 
 
 import com.sivalabs.bookmarks.jooq.tables.BookmarkTag;
-import com.sivalabs.bookmarks.jooq.tables.pojos.JooqBookmarkTag;
 
 import org.jooq.Field;
 import org.jooq.Record2;
@@ -132,18 +131,5 @@ public class BookmarkTagRecord extends TableRecordImpl<BookmarkTagRecord> implem
         setBookmarkId(bookmarkId);
         setTagId(tagId);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised BookmarkTagRecord
-     */
-    public BookmarkTagRecord(JooqBookmarkTag value) {
-        super(BookmarkTag.BOOKMARK_TAG);
-
-        if (value != null) {
-            setBookmarkId(value.getBookmarkId());
-            setTagId(value.getTagId());
-            resetChangedOnNotNull();
-        }
     }
 }

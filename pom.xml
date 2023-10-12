@@ -18,8 +18,7 @@
     <properties>
         <java.version>17</java.version>
         <testcontainers.version>1.19.1</testcontainers.version>
-        <db.username>postgres</db.username>
-        <db.password>postgres</db.password>
+        <tc-jooq-codegen-plugin.version>0.0.3</tc-jooq-codegen-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -50,11 +49,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
@@ -72,6 +66,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -94,151 +98,62 @@
                     </excludes>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>groovy-maven-plugin</artifactId>
-                <version>2.1.1</version>
-                <executions>
-                    <execution>
-                        <id>testcontainer-start</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                db = new org.testcontainers.containers.PostgreSQLContainer("postgres:15-alpine")
-                                        .withUsername("${db.username}")
-                                        .withDatabaseName("postgres")
-                                        .withPassword("${db.password}");
-
-                                db.start();
-                                project.properties.setProperty('db.url', db.getJdbcUrl());
-                                project.properties.setProperty('testcontainer.containerid', db.getContainerId());
-                                project.properties.setProperty('testcontainer.imageName', db.getDockerImageName());
-                            </source>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>testcontainer-stop</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                containerId = "${testcontainer.containerid}"
-                                imageName = "${testcontainer.imageName}"
-                                println("Stopping testcontainer $containerId - $imageName")
-                                org.testcontainers.utility.ResourceReaper
-                                        .instance()
-                                        .stopAndRemoveContainer(containerId, imageName);
-                            </source>
-                        </configuration>
-                    </execution>
-
-                </executions>
-
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-jooq-codegen-maven-plugin</artifactId>
+                <version>${tc-jooq-codegen-plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.testcontainers</groupId>
                         <artifactId>postgresql</artifactId>
                         <version>${testcontainers.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
                 </dependencies>
-            </plugin>
-
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>7.14.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
-                        <configuration>
-                            <url>${db.url}</url>
-                            <user>${db.username}</user>
-                            <password>${db.password}</password>
-                            <locations>
-                                <location>filesystem:src/main/resources/db/migration</location>
-                            </locations>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>${jooq.version}</version>
                 <executions>
                     <execution>
                         <id>generate-jooq-sources</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
-                            <jdbc>
-                                <url>${db.url}</url>
-                                <user>${db.username}</user>
-                                <password>${db.password}</password>
-                            </jdbc>
-                            <generator>
-                                <generate>
-                                    <pojos>true</pojos>
-                                    <daos>true</daos>
-                                    <springAnnotations>true</springAnnotations>
-                                    <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
-                                    <javaTimeTypes>true</javaTimeTypes>
-                                    <validationAnnotations>false</validationAnnotations>
-                                </generate>
-                                <database>
-                                    <inputSchema>public</inputSchema>
-                                    <includes>.*</includes>
-                                    <excludes>
-                                        flyway_schema_history
-                                    </excludes>
-                                </database>
-                                <!-- Rename the generated POJOs and DAOs classes -->
-                                <strategy>
-                                    <matchers>
-                                        <tables>
-                                            <table>
-                                                <pojoClass>
-                                                    <expression>JOOQ_$0</expression>
-                                                    <transform>PASCAL</transform>
-                                                </pojoClass>
-                                                <daoClass>
-                                                    <expression>$0_Repository</expression>
-                                                    <transform>PASCAL</transform>
-                                                </daoClass>
-                                            </table>
-                                        </tables>
-                                    </matchers>
-                                </strategy>
-                                <target>
-                                    <clean>true</clean>
-                                    <packageName>com.sivalabs.bookmarks.jooq</packageName>
-                                    <directory>src/main/jooq</directory>
-                                </target>
-                            </generator>
+                            <database>
+                                <type>POSTGRES</type>
+                                <containerImage>postgres:16-alpine</containerImage>
+                            </database>
+                            <flyway>
+                                <locations>
+                                    filesystem:${project.basedir}/src/main/resources/db/migration
+                                </locations>
+                            </flyway>
+                            <jooq>
+                                <generator>
+                                    <generate>
+                                        <javaTimeTypes>true</javaTimeTypes>
+                                    </generate>
+                                    <database>
+                                        <inputSchema>public</inputSchema>
+                                        <includes>.*</includes>
+                                        <excludes>
+                                            flyway_schema_history
+                                        </excludes>
+                                    </database>
+                                    <target>
+                                        <clean>true</clean>
+                                        <packageName>com.sivalabs.bookmarks.jooq</packageName>
+                                        <directory>src/main/jooq</directory>
+                                    </target>
+                                </generator>
+                            </jooq>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <!--<configuration>
-                    <systemPropertyVariables>
-                        <db.url>${db.url}</db.url>
-                        <db.username>${db.username}</db.username>
-                        <db.password>${db.password}</db.password>
-                    </systemPropertyVariables>
-                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

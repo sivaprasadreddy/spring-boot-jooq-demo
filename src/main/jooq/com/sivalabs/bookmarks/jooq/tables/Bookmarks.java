@@ -8,7 +8,7 @@ import com.sivalabs.bookmarks.jooq.Keys;
 import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.BookmarksRecord;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -76,12 +76,12 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
     /**
      * The column <code>public.bookmarks.created_at</code>.
      */
-    public final TableField<BookmarksRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<BookmarksRecord, OffsetDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMPWITHTIMEZONE)), this, "");
 
     /**
      * The column <code>public.bookmarks.updated_at</code>.
      */
-    public final TableField<BookmarksRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<BookmarksRecord, OffsetDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6), this, "");
 
     private Bookmarks(Name alias, Table<BookmarksRecord> aliased) {
         this(alias, aliased, null);
@@ -192,14 +192,14 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Long, String, String, Long, LocalDateTime, LocalDateTime> fieldsRow() {
+    public Row6<Long, String, String, Long, OffsetDateTime, OffsetDateTime> fieldsRow() {
         return (Row6) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super Long, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function6<? super Long, ? super String, ? super String, ? super Long, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -207,7 +207,7 @@ public class Bookmarks extends TableImpl<BookmarksRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Long, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Long, ? super String, ? super String, ? super Long, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

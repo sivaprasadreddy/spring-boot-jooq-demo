@@ -8,18 +8,19 @@ import com.sivalabs.bookmarks.jooq.Keys;
 import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.TagsRecord;
 
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function4;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -61,6 +62,16 @@ public class Tags extends TableImpl<TagsRecord> {
      * The column <code>public.tags.name</code>.
      */
     public final TableField<TagsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+
+    /**
+     * The column <code>public.tags.created_at</code>.
+     */
+    public final TableField<TagsRecord, OffsetDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMPWITHTIMEZONE)), this, "");
+
+    /**
+     * The column <code>public.tags.updated_at</code>.
+     */
+    public final TableField<TagsRecord, OffsetDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6), this, "");
 
     private Tags(Name alias, Table<TagsRecord> aliased) {
         this(alias, aliased, null);
@@ -155,18 +166,18 @@ public class Tags extends TableImpl<TagsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<Long, String> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row4<Long, String, OffsetDateTime, OffsetDateTime> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super Long, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super Long, ? super String, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -174,7 +185,7 @@ public class Tags extends TableImpl<TagsRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super Long, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Long, ? super String, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -1,4 +1,4 @@
-package com.sivalabs.bookmarks.domain.models;
+package com.sivalabs.bookmarks.models;
 
 import java.util.List;
 

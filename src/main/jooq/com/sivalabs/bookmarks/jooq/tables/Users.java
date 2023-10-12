@@ -8,7 +8,7 @@ import com.sivalabs.bookmarks.jooq.Keys;
 import com.sivalabs.bookmarks.jooq.Public;
 import com.sivalabs.bookmarks.jooq.tables.records.UsersRecord;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -74,19 +74,19 @@ public class Users extends TableImpl<UsersRecord> {
     public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
-     * The column <code>public.users.addr_id</code>.
+     * The column <code>public.users.preferences_id</code>.
      */
-    public final TableField<UsersRecord, Long> ADDR_ID = createField(DSL.name("addr_id"), SQLDataType.BIGINT, this, "");
+    public final TableField<UsersRecord, Long> PREFERENCES_ID = createField(DSL.name("preferences_id"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>public.users.created_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<UsersRecord, OffsetDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMPWITHTIMEZONE)), this, "");
 
     /**
      * The column <code>public.users.updated_at</code>.
      */
-    public final TableField<UsersRecord, LocalDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(6), this, "");
+    public final TableField<UsersRecord, OffsetDateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMPWITHTIMEZONE(6), this, "");
 
     private Users(Name alias, Table<UsersRecord> aliased) {
         this(alias, aliased, null);
@@ -143,19 +143,20 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public List<ForeignKey<UsersRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.USERS__USERS_ADDR_ID_FKEY);
+        return Arrays.asList(Keys.USERS__USERS_PREFERENCES_ID_FKEY);
     }
 
-    private transient Addresses _addresses;
+    private transient UserPreferences _userPreferences;
 
     /**
-     * Get the implicit join path to the <code>public.addresses</code> table.
+     * Get the implicit join path to the <code>public.user_preferences</code>
+     * table.
      */
-    public Addresses addresses() {
-        if (_addresses == null)
-            _addresses = new Addresses(this, Keys.USERS__USERS_ADDR_ID_FKEY);
+    public UserPreferences userPreferences() {
+        if (_userPreferences == null)
+            _userPreferences = new UserPreferences(this, Keys.USERS__USERS_PREFERENCES_ID_FKEY);
 
-        return _addresses;
+        return _userPreferences;
     }
 
     @Override
@@ -202,14 +203,14 @@ public class Users extends TableImpl<UsersRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, String, String, String, Long, LocalDateTime, LocalDateTime> fieldsRow() {
+    public Row7<Long, String, String, String, Long, OffsetDateTime, OffsetDateTime> fieldsRow() {
         return (Row7) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super String, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function7<? super Long, ? super String, ? super String, ? super String, ? super Long, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -217,7 +218,7 @@ public class Users extends TableImpl<UsersRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super String, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super String, ? super String, ? super String, ? super Long, ? super OffsetDateTime, ? super OffsetDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
