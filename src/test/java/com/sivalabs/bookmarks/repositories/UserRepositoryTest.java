@@ -1,5 +1,6 @@
 package com.sivalabs.bookmarks.repositories;
 
+import com.sivalabs.bookmarks.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
@@ -9,6 +10,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,8 +32,59 @@ class UserRepositoryTest {
             new PostgreSQLContainer<>("postgres:16-alpine");
 
     @Test
-    void findUserNameById() {
-        String username = userRepository.findUserNameById(1L);
-        assertThat(username).isEqualTo("Admin");
+    void findAllUsers() {
+        List<User> users = userRepository.findAllUsers();
+        assertThat(users).hasSize(2);
+        //more assertions
+    }
+
+    @Test
+    void findUserById() {
+        Optional<User> userOptional = userRepository.findUserById(1L);
+        assertThat(userOptional).isPresent();
+        assertThat(userOptional.get().id()).isEqualTo(1L);
+        assertThat(userOptional.get().name()).isEqualTo("Admin");
+        assertThat(userOptional.get().email()).isEqualTo("admin@gmail.com");
+        assertThat(userOptional.get().password()).isEqualTo("admin");
+    }
+
+    @Test
+    void createUser() {
+        User user = new User(null, "SivaLabs", "sivalabs@gmail.com", "siva1234");
+
+        User savedUser = userRepository.createUser(user);
+        assertThat(savedUser.id()).isNotNull();
+        assertThat(savedUser.name()).isEqualTo("SivaLabs");
+        assertThat(savedUser.email()).isEqualTo("sivalabs@gmail.com");
+        assertThat(savedUser.password()).isEqualTo("siva1234");
+    }
+
+    @Test
+    void updateUser() {
+        User user = createTestUser();
+        User updateUser = new User(user.id(), "TestName1", user.email(), user.password());
+        userRepository.updateUser(updateUser);
+
+        User updatedUser = userRepository.findUserById(updateUser.id()).orElseThrow();
+
+        assertThat(updatedUser.id()).isEqualTo(updateUser.id());
+        assertThat(updatedUser.name()).isEqualTo("TestName1");
+        assertThat(updatedUser.email()).isEqualTo(user.email());
+        assertThat(updatedUser.password()).isEqualTo(user.password());
+    }
+
+    @Test
+    void deleteUser() {
+        User user = createTestUser();
+        userRepository.deleteUser(user.id());
+
+        Optional<User> optionalUser = userRepository.findUserById(user.id());
+        assertThat(optionalUser).isEmpty();
+    }
+
+    private User createTestUser() {
+        String uuid = UUID.randomUUID().toString();
+        User user = new User(null, uuid, uuid+"@gmail.com", "Secret");
+        return userRepository.createUser(user);
     }
 }

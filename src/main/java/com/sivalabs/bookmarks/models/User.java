@@ -7,7 +7,7 @@ public record User (
      String password,
      UserPreferences preferences
 ) {
-    public User(Long id, String name, String password, String email) {
+    public User(Long id, String name, String email, String password) {
         this(id, name, email, password, null);
     }
 }
