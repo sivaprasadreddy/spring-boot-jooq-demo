@@ -12,19 +12,33 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.sivalabs.bookmarks.jooq.tables.Users.USERS;
+import static org.jooq.Records.mapping;
 
 @Repository
-class UserRepository {
+public class UserRepository {
     private final DSLContext dsl;
 
-    UserRepository(DSLContext dsl) {
+    public UserRepository(DSLContext dsl) {
         this.dsl = dsl;
     }
 
     public List<User> findAllUsers() {
+
+        return dsl.select(USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD)
+                .from(USERS)
+                .fetch(mapping(User::create));
+
+        /*
+        return dsl.select(USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD)
+                .from(USERS)
+                .fetch(mapping((id, name, email, password) -> new User(id, name, email, password)));
+        */
+
+        /*
         return dsl.select(USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD)
                 .from(USERS)
                 .fetch(r -> r.into(User.class));
+        */
 
         /*
         return dsl.select(USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD)
@@ -43,7 +57,8 @@ class UserRepository {
                 .from(USERS)
                 .where(USERS.ID.eq(id))
                 .fetchOptional()
-                .map(r -> r.into(User.class));
+                //.map(r -> r.into(User.class));
+                .map(mapping(User::create));
     }
 
     public Optional<User> findUserByEmail(String email){
