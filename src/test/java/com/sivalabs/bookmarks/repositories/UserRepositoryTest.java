@@ -42,10 +42,15 @@ class UserRepositoryTest {
     void findUserById() {
         Optional<User> userOptional = userRepository.findUserById(1L);
         assertThat(userOptional).isPresent();
-        assertThat(userOptional.get().id()).isEqualTo(1L);
-        assertThat(userOptional.get().name()).isEqualTo("Admin");
-        assertThat(userOptional.get().email()).isEqualTo("admin@gmail.com");
-        assertThat(userOptional.get().password()).isEqualTo("admin");
+        User user = userOptional.get();
+        assertThat(user.id()).isEqualTo(1L);
+        assertThat(user.name()).isEqualTo("Admin");
+        assertThat(user.email()).isEqualTo("admin@gmail.com");
+        assertThat(user.password()).isEqualTo("admin");
+        assertThat(user.password()).isEqualTo("admin");
+        assertThat(user.preferences().id()).isEqualTo(2L);
+        assertThat(user.preferences().theme()).isEqualTo("Dark");
+        assertThat(user.preferences().language()).isEqualTo("EN");
     }
 
     @Test

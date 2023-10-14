@@ -2,6 +2,7 @@ package com.sivalabs.bookmarks.repositories;
 
 import com.sivalabs.bookmarks.jooq.tables.records.UsersRecord;
 import com.sivalabs.bookmarks.models.User;
+import com.sivalabs.bookmarks.models.UserPreferences;
 import org.jooq.DSLContext;
 import org.jooq.Record4;
 import org.jooq.RecordMapper;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sivalabs.bookmarks.jooq.tables.UserPreferences.USER_PREFERENCES;
 import static com.sivalabs.bookmarks.jooq.tables.Users.USERS;
 import static org.jooq.Records.mapping;
+import static org.jooq.impl.DSL.row;
 
 @Repository
 public class UserRepository {
@@ -53,12 +56,59 @@ public class UserRepository {
     }
 
     public Optional<User> findUserById(Long id) {
-        return dsl.select(USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD)
+        Optional<User> result;
+
+        /*result = dsl
+                .select(
+                    USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD,
+                    USER_PREFERENCES.ID, USER_PREFERENCES.THEME, USER_PREFERENCES.LANGUAGE)
+                .from(USERS.leftOuterJoin(USER_PREFERENCES).on(USERS.PREFERENCES_ID.eq(USER_PREFERENCES.ID)))
+                .where(USERS.ID.eq(id))
+                .fetchOptional(record -> new User(
+                        record.get(USERS.ID),
+                        record.get(USERS.NAME),
+                        record.get(USERS.EMAIL),
+                        record.get(USERS.PASSWORD),
+                        new UserPreferences(
+                                record.get(USER_PREFERENCES.ID),
+                                record.get(USER_PREFERENCES.THEME),
+                                record.get(USER_PREFERENCES.LANGUAGE)
+                        )
+                ));*/
+
+        /*result = dsl
+                .select(
+                    USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD,
+                    USERS.userPreferences().ID, USERS.userPreferences().THEME, USERS.userPreferences().LANGUAGE)
+                .from(USERS)
+                .where(USERS.ID.eq(id))
+                .fetchOptional(record -> new User(
+                        record.get(USERS.ID),
+                        record.get(USERS.NAME),
+                        record.get(USERS.EMAIL),
+                        record.get(USERS.PASSWORD),
+                        new UserPreferences(
+                                record.get(USER_PREFERENCES.ID),
+                                record.get(USER_PREFERENCES.THEME),
+                                record.get(USER_PREFERENCES.LANGUAGE)
+                        )
+                ));*/
+
+        result = dsl
+                    .select(
+                        USERS.ID, USERS.NAME, USERS.EMAIL, USERS.PASSWORD,
+                        row(
+                            USERS.userPreferences().ID,
+                            USERS.userPreferences().THEME,
+                            USERS.userPreferences().LANGUAGE
+                        ).mapping(UserPreferences::new).as("preferences"))
                 .from(USERS)
                 .where(USERS.ID.eq(id))
                 .fetchOptional()
-                //.map(r -> r.into(User.class));
-                .map(mapping(User::create));
+                .map(mapping((userId, name, email, password, preferences) ->
+                        new User(userId, name, email, password, preferences)));
+
+        return result;
     }
 
     public Optional<User> findUserByEmail(String email){
