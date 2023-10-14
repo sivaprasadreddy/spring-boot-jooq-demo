@@ -24,12 +24,16 @@ VALUES (1, 'java'),
 
 INSERT INTO bookmarks(id, title, url, created_by, created_at)
 VALUES (1, 'SivaLabs', 'https://sivalabs.in', 1, CURRENT_TIMESTAMP),
-       (2, 'Spring Initializr', 'https://start.spring.io', 2, CURRENT_TIMESTAMP)
+       (2, 'Spring Initializr', 'https://start.spring.io', 2, CURRENT_TIMESTAMP),
+       (3, 'Spring Blog', 'https://spring.io/blog', 2, CURRENT_TIMESTAMP)
 ;
 
 insert into bookmark_tag(bookmark_id, tag_id)
 VALUES (1, 1),
        (1, 2),
        (1, 3),
-       (2, 2)
+       (2, 2),
+       (3, 2),
+       (3, 3),
+       (3, 4)
 ;

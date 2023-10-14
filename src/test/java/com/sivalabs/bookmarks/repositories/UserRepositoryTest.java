@@ -1,6 +1,7 @@
 package com.sivalabs.bookmarks.repositories;
 
 import com.sivalabs.bookmarks.models.User;
+import com.sivalabs.bookmarks.models.UserWithBookmarks;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
@@ -85,6 +86,23 @@ class UserRepositoryTest {
 
         Optional<User> optionalUser = userRepository.findUserById(user.id());
         assertThat(optionalUser).isEmpty();
+    }
+
+    @Test
+    void getUserWithBookmarks() {
+        Optional<UserWithBookmarks> userOptional = userRepository.getUserWithBookmarksById(2L);
+        assertThat(userOptional).isPresent();
+        UserWithBookmarks user = userOptional.get();
+        assertThat(user.id()).isEqualTo(2L);
+        assertThat(user.name()).isEqualTo("Siva");
+        assertThat(user.email()).isEqualTo("siva@gmail.com");
+
+        assertThat(user.bookmarks()).hasSize(2);
+
+        var bookmark1 = new UserWithBookmarks.BookmarkInfo(2L, "Spring Initializr", "https://start.spring.io");
+        var bookmark2 = new UserWithBookmarks.BookmarkInfo(3L, "Spring Blog", "https://spring.io/blog");
+
+        assertThat(user.bookmarks()).contains(bookmark1, bookmark2);
     }
 
     private User createTestUser() {

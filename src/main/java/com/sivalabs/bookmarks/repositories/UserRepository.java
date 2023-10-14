@@ -3,6 +3,7 @@ package com.sivalabs.bookmarks.repositories;
 import com.sivalabs.bookmarks.jooq.tables.records.UsersRecord;
 import com.sivalabs.bookmarks.models.User;
 import com.sivalabs.bookmarks.models.UserPreferences;
+import com.sivalabs.bookmarks.models.UserWithBookmarks;
 import org.jooq.DSLContext;
 import org.jooq.Record4;
 import org.jooq.RecordMapper;
@@ -12,10 +13,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sivalabs.bookmarks.jooq.tables.Bookmarks.BOOKMARKS;
 import static com.sivalabs.bookmarks.jooq.tables.UserPreferences.USER_PREFERENCES;
 import static com.sivalabs.bookmarks.jooq.tables.Users.USERS;
 import static org.jooq.Records.mapping;
+import static org.jooq.impl.DSL.multiset;
 import static org.jooq.impl.DSL.row;
+import static org.jooq.impl.DSL.select;
 
 @Repository
 public class UserRepository {
@@ -109,6 +113,22 @@ public class UserRepository {
                         new User(userId, name, email, password, preferences)));
 
         return result;
+    }
+
+    public Optional<UserWithBookmarks> getUserWithBookmarksById(Long userId) {
+        return dsl
+                .select(
+                    USERS.ID, USERS.NAME, USERS.EMAIL,
+                    multiset(
+                        select(BOOKMARKS.ID, BOOKMARKS.TITLE, BOOKMARKS.URL)
+                        .from(BOOKMARKS)
+                        .where(BOOKMARKS.CREATED_BY.eq(USERS.ID))
+                    ).as("bookmarks").convertFrom(r -> r.map(mapping(UserWithBookmarks.BookmarkInfo::new)))
+                )
+                .from(USERS)
+                .where(USERS.ID.eq(userId))
+                .fetchOptional()
+                .map(mapping(UserWithBookmarks::new));
     }
 
     public Optional<User> findUserByEmail(String email){
